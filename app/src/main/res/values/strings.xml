@@ -21,4 +21,5 @@
     <string name="dec">DEC</string>
     <string name="hex">HEX</string>
     <string name="hex_prefix">0x</string>
+    <string name="equals">=</string>
 </resources>
