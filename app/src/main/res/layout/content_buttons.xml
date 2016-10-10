@@ -1,10 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     style="@style/TextAppearance.AppCompat.Large"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <Button
+            style="@style/TextAppearance.AppCompat.Large"
+            android:id="@+id/button_backspace"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/backspace"/>
+
+        <Button
+            style="@style/TextAppearance.AppCompat.Large"
+            android:id="@+id/button_clear_entry"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/clear_entry"/>
+
+        <Button
+            style="@style/TextAppearance.AppCompat.Large"
+            android:id="@+id/button_right_shift"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/clear"/>
+
+        <Button
+            style="@style/TextAppearance.AppCompat.Large"
+            android:id="@+id/button_and"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/and"/>
+
+        <Button
+            style="@style/TextAppearance.AppCompat.Large"
+            android:id="@+id/button_not"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/not"/>
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -38,11 +85,19 @@
 
         <Button
             style="@style/TextAppearance.AppCompat.Large"
-            android:id="@+id/button_divide"
+            android:id="@+id/button_or"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/divide"/>
+            android:text="@string/or"/>
+
+        <Button
+            style="@style/TextAppearance.AppCompat.Large"
+            android:id="@+id/button_xor"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/xor"/>
     </LinearLayout>
 
     <LinearLayout
@@ -74,6 +129,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/six"/>
+
         <Button
             style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_multiply"
@@ -81,6 +137,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/multiply"/>
+
+        <Button
+            style="@style/TextAppearance.AppCompat.Large"
+            android:id="@+id/button_divide"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/divide"/>
     </LinearLayout>
 
     <LinearLayout
@@ -115,6 +179,14 @@
 
         <Button
             style="@style/TextAppearance.AppCompat.Large"
+            android:id="@+id/button_plus"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/plus"/>
+
+        <Button
+            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_minus"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -142,22 +214,24 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/plusplus"/>
+            android:text="@string/increment"/>
+
+        <Button
+            style="@style/TextAppearance.AppCompat.Large"
+            android:id="@+id/button_decrement"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/decrement"/>
 
         <Button
             style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_equals"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:text="@string/equals"/>
 
-        <Button
-            style="@style/TextAppearance.AppCompat.Large"
-            android:id="@+id/button_plus"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/plus"/>
+
     </LinearLayout>
 </LinearLayout>

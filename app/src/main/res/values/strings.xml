@@ -23,8 +23,18 @@
     <string name="hex_prefix">0x</string>
     <string name="equals">=</string>
     <string name="plus">+</string>
-    <string name="plusplus">++</string>
+    <string name="increment"> ++</string>
     <string name="minus">-</string>
     <string name="multiply">*</string>
     <string name="divide">/</string>
+    <string name="and"><![CDATA[&]]></string>
+    <string name="or">|</string>
+    <string name="xor">^</string>
+    <string name="not">~</string>
+    <string name="left_shift"><![CDATA[<<]]></string>
+    <string name="right_shift"><![CDATA[>>]]></string>
+    <string name="decrement">- -</string>
+    <string name="clear_entry">ce</string>
+    <string name="clear">C</string>
+    <string name="backspace"><![CDATA[<-]]></string>
 </resources>
