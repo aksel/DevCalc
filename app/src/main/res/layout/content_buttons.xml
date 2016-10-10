@@ -30,11 +30,103 @@
 
         <Button
             style="@style/TextAppearance.AppCompat.Large"
-            android:id="@+id/button_right_shift"
+            android:id="@+id/button_clear"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/clear"/>
+
+        <Button
+            style="@style/TextAppearance.AppCompat.Large"
+            android:id="@+id/button_left_shift"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/left_shift"/>
+
+        <Button
+            style="@style/TextAppearance.AppCompat.Large"
+            android:id="@+id/button_right_shift"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/right_shift"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                style="@style/TextAppearance.AppCompat.Small"
+                android:id="@+id/button_d"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/d"/>
+
+            <Button
+                style="@style/TextAppearance.AppCompat.Small"
+                android:id="@+id/button_a"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/a"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                style="@style/TextAppearance.AppCompat.Small"
+                android:id="@+id/button_e"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/e"/>
+
+            <Button
+                style="@style/TextAppearance.AppCompat.Small"
+                android:id="@+id/button_b"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/b"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                style="@style/TextAppearance.AppCompat.Small"
+                android:id="@+id/button_f"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/f"/>
+
+            <Button
+                style="@style/TextAppearance.AppCompat.Small"
+                android:id="@+id/button_c"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/c"/>
+        </LinearLayout>
 
         <Button
             style="@style/TextAppearance.AppCompat.Large"
