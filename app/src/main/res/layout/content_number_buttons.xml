@@ -2,85 +2,92 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    style="@style/TextAppearance.AppCompat.Large"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/buttons_hex_def"
         android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <Button
+            style="@style/TextAppearance.AppCompat.Large"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/d"
-            android:enabled="false"/>
+            android:text="@string/d"/>
 
         <Button
+            style="@style/TextAppearance.AppCompat.Large"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/e"
-            android:enabled="false"/>
+            android:text="@string/e"/>
 
         <Button
+            style="@style/TextAppearance.AppCompat.Large"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/f"
-            android:enabled="false"/>
+            android:text="@string/f"/>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/buttons_hex_abc"
         android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <Button
+            style="@style/TextAppearance.AppCompat.Large"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/a"
-            android:enabled="false"/>
+            android:text="@string/a"/>
 
         <Button
+            style="@style/TextAppearance.AppCompat.Large"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/b"
-            android:enabled="false"/>
+            android:text="@string/b"/>
 
         <Button
+            style="@style/TextAppearance.AppCompat.Large"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/c"
-            android:enabled="false"/>
+            android:text="@string/c"/>
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <Button
+            style="@style/TextAppearance.AppCompat.Large"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/seven"/>
 
         <Button
+            style="@style/TextAppearance.AppCompat.Large"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/eight"/>
 
         <Button
+            style="@style/TextAppearance.AppCompat.Large"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/nine"/>
     </LinearLayout>
@@ -88,23 +95,27 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <Button
+            style="@style/TextAppearance.AppCompat.Large"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/four"/>
 
         <Button
+            style="@style/TextAppearance.AppCompat.Large"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/five"/>
 
         <Button
+            style="@style/TextAppearance.AppCompat.Large"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/six"/>
     </LinearLayout>
@@ -112,23 +123,27 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <Button
+            style="@style/TextAppearance.AppCompat.Large"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/one"/>
 
         <Button
+            style="@style/TextAppearance.AppCompat.Large"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/two"/>
 
         <Button
+            style="@style/TextAppearance.AppCompat.Large"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/three"/>
     </LinearLayout>
@@ -136,11 +151,13 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <Button
+            style="@style/TextAppearance.AppCompat.Large"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/zero"/>
 
