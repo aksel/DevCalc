@@ -22,4 +22,9 @@
     <string name="hex">HEX</string>
     <string name="hex_prefix">0x</string>
     <string name="equals">=</string>
+    <string name="plus">+</string>
+    <string name="plusplus">++</string>
+    <string name="minus">-</string>
+    <string name="multiply">*</string>
+    <string name="divide">/</string>
 </resources>

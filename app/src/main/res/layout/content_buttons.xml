@@ -35,6 +35,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/nine"/>
+
+        <Button
+            style="@style/TextAppearance.AppCompat.Large"
+            android:id="@+id/button_divide"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/divide"/>
     </LinearLayout>
 
     <LinearLayout
@@ -66,6 +74,13 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/six"/>
+        <Button
+            style="@style/TextAppearance.AppCompat.Large"
+            android:id="@+id/button_multiply"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/multiply"/>
     </LinearLayout>
 
     <LinearLayout
@@ -97,6 +112,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/three"/>
+
+        <Button
+            style="@style/TextAppearance.AppCompat.Large"
+            android:id="@+id/button_minus"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/minus"/>
     </LinearLayout>
 
     <LinearLayout
@@ -115,10 +138,26 @@
 
         <Button
             style="@style/TextAppearance.AppCompat.Large"
+            android:id="@+id/button_increment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/plusplus"/>
+
+        <Button
+            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_equals"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:text="@string/equals"/>
+
+        <Button
+            style="@style/TextAppearance.AppCompat.Large"
+            android:id="@+id/button_plus"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/plus"/>
     </LinearLayout>
 </LinearLayout>
