@@ -12,8 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="4dp"
-        android:paddingRight="4dp"
-        android:background="@android:color/background_light">
+        android:paddingRight="4dp">
 
         <include
             layout="@layout/display_byte"
@@ -62,7 +61,8 @@
         android:padding="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/background_light"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryDark"
         android:gravity="end"
         tools:text="1235592"/>
 </LinearLayout>

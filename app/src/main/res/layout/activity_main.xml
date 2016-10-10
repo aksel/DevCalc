@@ -9,5 +9,10 @@
     android:padding="8dp">
 
     <include layout="@layout/content_display"/>
+    
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="8dp"/>
+    
     <include layout="@layout/content_buttons"/>
 </LinearLayout>
