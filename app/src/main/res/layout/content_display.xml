@@ -1,9 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="8dp">
 
-    <include layout="@layout/display_bytes"/>
+    <LinearLayout
+        android:id="@+id/layout_bytes"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:background="@android:color/background_light">
+
+        <include
+            layout="@layout/display_byte"
+            android:id="@+id/byte_3"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" >
+        </Space>
+
+        <include
+            layout="@layout/display_byte"
+            android:id="@+id/byte_2"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" >
+        </Space>
+
+        <include
+            layout="@layout/display_byte"
+            android:id="@+id/byte_1"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" >
+        </Space>
+
+        <include
+            layout="@layout/display_byte"
+            android:id="@+id/byte_0"/>
+    </LinearLayout>
+
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="8dp" >
+    </Space>
+
+    <TextView
+        android:id="@+id/textView_input"
+        android:typeface="monospace"
+        android:textSize="20sp"
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/background_light"
+        android:gravity="end"
+        tools:text="1235592"/>
 </LinearLayout>
