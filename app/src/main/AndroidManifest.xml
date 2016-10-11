@@ -2,7 +2,7 @@
 <manifest package="com.akseltorgard.devcalc"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <supports-screens android:requiresSmallestWidthDp="480" />
+    <supports-screens android:requiresSmallestWidthDp="720" />
 
     <application
         android:allowBackup="true"
