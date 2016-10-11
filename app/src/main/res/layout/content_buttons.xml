@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/TextAppearance.AppCompat.Large"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -13,7 +12,6 @@
         android:layout_weight="1">
 
         <Button
-            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_backspace"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -21,7 +19,6 @@
             android:text="@string/backspace"/>
 
         <Button
-            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_clear_entry"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -29,7 +26,6 @@
             android:text="@string/clear_entry"/>
 
         <Button
-            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_clear"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -37,7 +33,6 @@
             android:text="@string/clear"/>
 
         <Button
-            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_left_shift"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -45,7 +40,6 @@
             android:text="@string/left_shift"/>
 
         <Button
-            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_right_shift"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -66,7 +60,6 @@
             android:layout_weight="1">
 
             <Button
-                style="@style/TextAppearance.AppCompat.Small"
                 android:id="@+id/button_d"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -74,7 +67,6 @@
                 android:text="@string/d"/>
 
             <Button
-                style="@style/TextAppearance.AppCompat.Small"
                 android:id="@+id/button_a"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -89,7 +81,6 @@
             android:layout_weight="1">
 
             <Button
-                style="@style/TextAppearance.AppCompat.Small"
                 android:id="@+id/button_e"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -97,7 +88,6 @@
                 android:text="@string/e"/>
 
             <Button
-                style="@style/TextAppearance.AppCompat.Small"
                 android:id="@+id/button_b"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -112,7 +102,6 @@
             android:layout_weight="1">
 
             <Button
-                style="@style/TextAppearance.AppCompat.Small"
                 android:id="@+id/button_f"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -120,7 +109,6 @@
                 android:text="@string/f"/>
 
             <Button
-                style="@style/TextAppearance.AppCompat.Small"
                 android:id="@+id/button_c"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -129,7 +117,6 @@
         </LinearLayout>
 
         <Button
-            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_and"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -137,7 +124,6 @@
             android:text="@string/and"/>
 
         <Button
-            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_not"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -152,7 +138,6 @@
         android:layout_weight="1">
 
         <Button
-            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_7"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -160,7 +145,6 @@
             android:text="@string/seven"/>
 
         <Button
-            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_8"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -168,7 +152,6 @@
             android:text="@string/eight"/>
 
         <Button
-            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_9"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -176,7 +159,6 @@
             android:text="@string/nine"/>
 
         <Button
-            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_or"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -184,7 +166,6 @@
             android:text="@string/or"/>
 
         <Button
-            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_xor"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -199,7 +180,6 @@
         android:layout_weight="1">
 
         <Button
-            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_4"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -207,7 +187,6 @@
             android:text="@string/four"/>
 
         <Button
-            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_5"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -215,7 +194,6 @@
             android:text="@string/five"/>
 
         <Button
-            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_6"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -223,7 +201,6 @@
             android:text="@string/six"/>
 
         <Button
-            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_multiply"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -231,7 +208,6 @@
             android:text="@string/multiply"/>
 
         <Button
-            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_divide"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -246,7 +222,6 @@
         android:layout_weight="1">
 
         <Button
-            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -254,7 +229,6 @@
             android:text="@string/one"/>
 
         <Button
-            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -262,7 +236,6 @@
             android:text="@string/two"/>
 
         <Button
-            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_3"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -270,7 +243,6 @@
             android:text="@string/three"/>
 
         <Button
-            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_plus"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -278,7 +250,6 @@
             android:text="@string/plus"/>
 
         <Button
-            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_minus"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -293,7 +264,6 @@
         android:layout_weight="1">
 
         <Button
-            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_0"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -301,7 +271,6 @@
             android:text="@string/zero"/>
 
         <Button
-            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_increment"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -309,7 +278,6 @@
             android:text="@string/increment"/>
 
         <Button
-            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_decrement"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -317,13 +285,10 @@
             android:text="@string/decrement"/>
 
         <Button
-            style="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/button_equals"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:text="@string/equals"/>
-
-
     </LinearLayout>
 </LinearLayout>
