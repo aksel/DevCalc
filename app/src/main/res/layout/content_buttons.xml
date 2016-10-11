@@ -243,14 +243,14 @@
             android:text="@string/three"/>
 
         <Button
-            android:id="@+id/button_plus"
+            android:id="@+id/button_add"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/plus"/>
 
         <Button
-            android:id="@+id/button_minus"
+            android:id="@+id/button_subtract"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
