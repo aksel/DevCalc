@@ -1,5 +1,6 @@
 package com.akseltorgard.devcalc;
 
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
@@ -173,6 +174,11 @@ public class MainActivity extends AppCompatActivity {
 
         if (mCalculator.inputNumber(number)) {
             mInput.setText(mCalculator.getInput());
+        }
+
+        else {
+            SoundPool soundPool = SoundPoolManager.getSoundPool();
+            soundPool.play(soundPool.load(this, R.raw.boop, 1), 1, 1, 0, 0, 1);
         }
     }
 
