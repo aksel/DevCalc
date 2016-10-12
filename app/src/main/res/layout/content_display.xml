@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary">
 
-        <include layout="@layout/display_input_selector"/>
+        <include layout="@layout/display_input_mode"/>
 
         <LinearLayout
             android:orientation="horizontal"
