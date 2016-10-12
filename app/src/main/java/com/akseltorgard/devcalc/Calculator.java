@@ -3,11 +3,12 @@ package com.akseltorgard.devcalc;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Calculator implements Parcelable{
+class Calculator implements Parcelable{
 
-    static final int BIN = 1;
-    static final int DEC = 2;
-    static final int HEX = 3;
+    static final int BIN = 2;
+    static final int DEC = 10;
+    static final int HEX = 16;
+
     /**
      * Current calculator input.
      */
@@ -18,13 +19,21 @@ public class Calculator implements Parcelable{
      */
     private int mOperand;
 
-    private int mInputMode;
+    private int mBase;
 
     private Operator mOperator;
 
     Calculator() {
         mInput = "0";
-        mInputMode = DEC;
+        mBase = DEC;
+    }
+
+    int getBase() {
+        return mBase;
+    }
+
+    String getInput() {
+        return mInput;
     }
 
     /**
@@ -47,39 +56,32 @@ public class Calculator implements Parcelable{
         return true;
     }
 
-    public void setOperator(Operator operator) {
-        mOperator = operator;
-        mOperand = Integer.parseInt(mInput);
-        mInput = "";
-    }
-
-    String getInput() {
-        return mInput;
-    }
-
-    public int getInputMode() {
-        return mInputMode;
-    }
-
-    public boolean setInputMode(int inputMode) {
-        if (inputMode != mInputMode) {
-            mInputMode = inputMode;
+    boolean setBase(int base) {
+        if (base != mBase) {
+            int converted = Integer.parseInt(mInput, mBase);
+            mBase = base;
+            mInput = Integer.toString(converted, mBase);
             return true;
         }
         return false;
     }
 
+    void setOperator(Operator operator) {
+        mOperator = operator;
+        mOperand = Integer.parseInt(mInput, mBase);
+    }
+
     private Calculator(Parcel in) {
         mInput = in.readString();
         mOperand = in.readInt();
-        mInputMode = in.readInt();
+        mBase = in.readInt();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(mInput);
         dest.writeInt(mOperand);
-        dest.writeInt(mInputMode);
+        dest.writeInt(mBase);
     }
 
     @Override

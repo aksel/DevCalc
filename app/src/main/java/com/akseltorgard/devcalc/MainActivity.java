@@ -2,15 +2,14 @@ package com.akseltorgard.devcalc;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import java.util.Arrays;
 import java.util.HashMap;
 
 import static com.akseltorgard.devcalc.Operator.*;
@@ -44,22 +43,26 @@ public class MainActivity extends AppCompatActivity {
         }
 
         initDisplay();
-        initInputModeButtons();
+        initBaseButtons();
         initNumberButtons();
         initOperatorButtons();
     }
 
     private void initDisplay() {
-        mInput = (TextView) findViewById(R.id.textView_input);
+        mInput = (TextView) findViewById(R.id.text_view_input);
+        mInput.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
         mInput.setText(mCalculator.getInput());
     }
 
-    private void initInputModeButtons() {
+    /**
+     * Finds base radio buttons, sets onClickListener -> changeBase(base)
+     */
+    private void initBaseButtons() {
         RadioButton binButton = (RadioButton) findViewById(R.id.radio_button_bin);
         binButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCalculator.setInputMode(Calculator.BIN);
+                changeBase(Calculator.BIN);
             }
         });
 
@@ -67,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         decButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCalculator.setInputMode(Calculator.DEC);
+                changeBase(Calculator.DEC);
             }
         });
 
@@ -75,11 +78,11 @@ public class MainActivity extends AppCompatActivity {
         hexButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCalculator.setInputMode(Calculator.HEX);
+                changeBase(Calculator.HEX);
             }
         });
 
-        switch (mCalculator.getInputMode()) {
+        switch (mCalculator.getBase()) {
             case Calculator.BIN:
                 binButton.setChecked(true);
                 break;
@@ -93,7 +96,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Finds all number buttons, sets an onClickListener -> numberPressed(numberButton);
+     * Finds all number buttons, sets onClickListener -> numberPressed(numberButton).
+     * Calls enableButtonsInRange(base), enabling and disabling buttons based on whether they
+     * are in range or not.
      */
     private void initNumberButtons() {
         View.OnClickListener numberListener = new View.OnClickListener() {
@@ -106,16 +111,16 @@ public class MainActivity extends AppCompatActivity {
 
         mNumbers = new Button[16];
 
-        mNumbers[0] = (Button) findViewById(R.id.button_0);
-        mNumbers[1] = (Button) findViewById(R.id.button_1);
-        mNumbers[2] = (Button) findViewById(R.id.button_2);
-        mNumbers[3] = (Button) findViewById(R.id.button_3);
-        mNumbers[4] = (Button) findViewById(R.id.button_4);
-        mNumbers[5] = (Button) findViewById(R.id.button_5);
-        mNumbers[6] = (Button) findViewById(R.id.button_6);
-        mNumbers[7] = (Button) findViewById(R.id.button_7);
-        mNumbers[8] = (Button) findViewById(R.id.button_8);
-        mNumbers[9] = (Button) findViewById(R.id.button_9);
+        mNumbers[0]  = (Button) findViewById(R.id.button_0);
+        mNumbers[1]  = (Button) findViewById(R.id.button_1);
+        mNumbers[2]  = (Button) findViewById(R.id.button_2);
+        mNumbers[3]  = (Button) findViewById(R.id.button_3);
+        mNumbers[4]  = (Button) findViewById(R.id.button_4);
+        mNumbers[5]  = (Button) findViewById(R.id.button_5);
+        mNumbers[6]  = (Button) findViewById(R.id.button_6);
+        mNumbers[7]  = (Button) findViewById(R.id.button_7);
+        mNumbers[8]  = (Button) findViewById(R.id.button_8);
+        mNumbers[9]  = (Button) findViewById(R.id.button_9);
         mNumbers[10] = (Button) findViewById(R.id.button_a);
         mNumbers[11] = (Button) findViewById(R.id.button_b);
         mNumbers[12] = (Button) findViewById(R.id.button_c);
@@ -126,10 +131,12 @@ public class MainActivity extends AppCompatActivity {
         for (Button b : mNumbers) {
             b.setOnClickListener(numberListener);
         }
+
+        enableButtonsInRange(mCalculator.getBase());
     }
 
     /**
-     * Finds all operator buttons, and gives them an onClickListener -> operatorPressed(operator).
+     * Finds all operator buttons, sets onClickListener -> operatorPressed(operator).
      */
     private void initOperatorButtons() {
 
@@ -172,8 +179,27 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "PRESSED: " + operator.name());
     }
 
-    private void changeInputMode() {
+    /**
+     * Changes base in Calculator. If base is changed, calls enableButtonsInRange(base);
+     * @param base Base to change to.
+     */
+    private void changeBase(int base) {
+        if (mCalculator.setBase(base)) {
+            enableButtonsInRange(base);
+            mInput.setText(mCalculator.getInput());
+        }
+    }
 
+    /**
+     * Runs through the number buttons, enabling them if they are in range, and disabling them
+     * if they are not. For example, in base 2, only the first two buttons (0 and 1) are in range.
+     * They get enabled, while the rest get disabled.
+     * @param base Base 2, 10 or 16, i.e. binary, decimal or hexadecimal.
+     */
+    private void enableButtonsInRange(int base) {
+        for (int i = 0; i < mNumbers.length; i++) {
+            mNumbers[i].setEnabled(i < base);
+        }
     }
 
     @Override
