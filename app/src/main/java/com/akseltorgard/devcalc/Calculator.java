@@ -58,9 +58,22 @@ class Calculator implements Parcelable{
 
     boolean setBase(int base) {
         if (base != mBase) {
-            int converted = Integer.parseInt(mInput, mBase);
+
+            int converted = (int) Long.parseLong(mInput, mBase);
             mBase = base;
-            mInput = Integer.toString(converted, mBase);
+
+            switch (base) {
+                case BIN:
+                    mInput = Integer.toBinaryString(converted);
+                    break;
+                case DEC:
+                    mInput = Integer.toString(converted);
+                    break;
+                case HEX:
+                    mInput = Integer.toHexString(converted);
+                    break;
+            }
+
             return true;
         }
         return false;
