@@ -4,6 +4,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Calculator implements Parcelable{
+
+    static final int BIN = 1;
+    static final int DEC = 2;
+    static final int HEX = 3;
     /**
      * Current calculator input.
      */
@@ -14,12 +18,15 @@ public class Calculator implements Parcelable{
      */
     private int mOperand;
 
+    private int mInputMode;
+
     private Operator mOperator;
 
     Calculator() {
         mInput = "0";
+        mInputMode = DEC;
     }
-    
+
     /**
      * Appends number to mInput if possible. Returns false if max number of digits has been
      * reached for current input type (dec = 10, hex = 8, bin = 32). Otherwise returns true.
@@ -50,20 +57,34 @@ public class Calculator implements Parcelable{
         return mInput;
     }
 
-    private Calculator(Parcel p) {
-        mInput = p.readString();
-        mOperand = p.readInt();
+    public int getInputMode() {
+        return mInputMode;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public boolean setInputMode(int inputMode) {
+        if (inputMode != mInputMode) {
+            mInputMode = inputMode;
+            return true;
+        }
+        return false;
+    }
+
+    private Calculator(Parcel in) {
+        mInput = in.readString();
+        mOperand = in.readInt();
+        mInputMode = in.readInt();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(mInput);
         dest.writeInt(mOperand);
+        dest.writeInt(mInputMode);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Calculator> CREATOR = new Creator<Calculator>() {

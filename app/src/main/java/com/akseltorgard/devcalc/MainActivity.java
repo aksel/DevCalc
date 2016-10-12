@@ -6,8 +6,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 import static com.akseltorgard.devcalc.Operator.*;
@@ -21,7 +24,10 @@ public class MainActivity extends AppCompatActivity {
 
     Button[] mNumbers;
 
-    TextView mDisplayInput;
+    /**
+     * Display, shows input.
+     */
+    TextView mInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +43,53 @@ public class MainActivity extends AppCompatActivity {
             mCalculator = new Calculator();
         }
 
-        mDisplayInput = (TextView) findViewById(R.id.textView_input);
-        mDisplayInput.setText(mCalculator.getInput());
-
+        initDisplay();
+        initInputModeButtons();
         initNumberButtons();
         initOperatorButtons();
+    }
+
+    private void initDisplay() {
+        mInput = (TextView) findViewById(R.id.textView_input);
+        mInput.setText(mCalculator.getInput());
+    }
+
+    private void initInputModeButtons() {
+        RadioButton binButton = (RadioButton) findViewById(R.id.radio_button_bin);
+        binButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCalculator.setInputMode(Calculator.BIN);
+            }
+        });
+
+        RadioButton decButton = (RadioButton) findViewById(R.id.radio_button_dec);
+        decButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCalculator.setInputMode(Calculator.DEC);
+            }
+        });
+
+        RadioButton hexButton = (RadioButton) findViewById(R.id.radio_button_hex);
+        hexButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCalculator.setInputMode(Calculator.HEX);
+            }
+        });
+
+        switch (mCalculator.getInputMode()) {
+            case Calculator.BIN:
+                binButton.setChecked(true);
+                break;
+            case Calculator.DEC:
+                decButton.setChecked(true);
+                break;
+            case Calculator.HEX:
+                hexButton.setChecked(true);
+                break;
+        }
     }
 
     /**
@@ -117,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "PRESSED:" + number);
 
         mCalculator.inputNumber(number);
-        mDisplayInput.setText(mCalculator.getInput());
+        mInput.setText(mCalculator.getInput());
     }
 
     private void operatorPressed(Operator operator) {
