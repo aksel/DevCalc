@@ -171,8 +171,9 @@ public class MainActivity extends AppCompatActivity {
     private void numberPressed(String number) {
         Log.d(TAG, "PRESSED:" + number);
 
-        mCalculator.inputNumber(number);
-        mInput.setText(mCalculator.getInput());
+        if (mCalculator.inputNumber(number)) {
+            mInput.setText(mCalculator.getInput());
+        }
     }
 
     private void operatorPressed(Operator operator) {

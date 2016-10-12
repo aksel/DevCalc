@@ -20,12 +20,14 @@ class Calculator implements Parcelable{
     private int mOperand;
 
     private int mBase;
+    private int mMaxLength;
 
     private Operator mOperator;
 
     Calculator() {
         mInput = "0";
         mBase = DEC;
+        mMaxLength = 10;
     }
 
     int getBase() {
@@ -43,15 +45,17 @@ class Calculator implements Parcelable{
      * @return Number was successfully appended.
      */
     boolean inputNumber(String number) {
-        //TODO: Verify number can be appended.
 
         if (mInput.equals("0")) {
             mInput = number;
+            return true;
         }
 
-        else {
-            mInput = mInput + number;
+        else if(mInput.length() >= mMaxLength) {
+            return false;
         }
+
+        mInput = mInput + number;
 
         return true;
     }
@@ -65,12 +69,15 @@ class Calculator implements Parcelable{
             switch (base) {
                 case BIN:
                     mInput = Integer.toBinaryString(converted);
+                    mMaxLength = 32;
                     break;
                 case DEC:
                     mInput = Integer.toString(converted);
+                    mMaxLength = 10;
                     break;
                 case HEX:
                     mInput = Integer.toHexString(converted);
+                    mMaxLength = 8;
                     break;
             }
 
@@ -83,6 +90,10 @@ class Calculator implements Parcelable{
         mOperator = operator;
         mOperand = Integer.parseInt(mInput, mBase);
     }
+
+    /***
+     * Below this line is the implementation of Parcelable.
+     */
 
     private Calculator(Parcel in) {
         mInput = in.readString();
