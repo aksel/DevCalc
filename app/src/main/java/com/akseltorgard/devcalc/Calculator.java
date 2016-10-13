@@ -33,7 +33,16 @@ class Calculator implements Parcelable{
     }
 
     String getInput() {
-        return Integer.toString(mInput, mBase);
+        switch (mBase) {
+            case BIN:
+                return Integer.toBinaryString(mInput);
+            case DEC:
+                return Integer.toString(mInput);
+            case HEX:
+                return Integer.toHexString(mInput);
+            default:
+                throw new NumberFormatException("Improper base: " + mBase);
+        }
     }
 
     /**
@@ -51,18 +60,56 @@ class Calculator implements Parcelable{
 
         if (mInput == 0) {
             mInput = digit;
-            return true;
         }
 
-        else if (mInput == Integer.MAX_VALUE ||
-                 mInput > (Integer.MAX_VALUE / 10) ||
-                 digit > Integer.MAX_VALUE - mInput*10) {
+        else {
+            switch (mBase) {
+                case BIN:
+                    return inputBinary(digit);
+                case DEC:
+                    return inputDecimal(digit);
+                case HEX:
+                    return inputHexadecimal(digit);
+            }
+        }
+
+        return true;
+    }
+
+    private boolean inputBinary(int digit) {
+        //Count number of bits
+        int val = mInput;
+        int count;
+        for (count = 0; val != 0; count++) {
+            val >>>= 1;
+        }
+
+        //Max bits (32) have been input.
+        if (count == 32) {
+            return false;
+        }
+
+        //Shift mInput by 1, and OR digit
+        mInput <<= 1;
+        mInput |= digit;
+
+        return true;
+    }
+
+    private boolean inputDecimal(int digit) {
+        if (mInput == Integer.MAX_VALUE ||
+                mInput > (Integer.MAX_VALUE / 10) ||
+                digit > Integer.MAX_VALUE - mInput*10) {
             return false;
         }
 
         mInput = mInput * 10 + digit;
 
         return true;
+    }
+
+    private boolean inputHexadecimal(int digit) {
+        return false;
     }
 
     boolean setBase(int base) {
