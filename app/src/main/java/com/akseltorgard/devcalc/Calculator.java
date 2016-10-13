@@ -104,26 +104,6 @@ class Calculator implements Parcelable{
         return true;
     }
 
-    private boolean inputBinary(int digit) {
-        //Count number of bits
-        int val = mInput;
-        int count;
-        for (count = 0; val != 0; count++) {
-            val >>>= 1;
-        }
-
-        //Max bits (32) have been input.
-        if (count == 32) {
-            return false;
-        }
-
-        //Shift mInput by 1, and OR digit
-        mInput <<= 1;
-        mInput |= digit;
-
-        return true;
-    }
-
     private boolean inputDecimal(int digit) {
         if (mInput == Integer.MAX_VALUE ||
                 mInput > (Integer.MAX_VALUE / 10) ||
