@@ -65,13 +65,41 @@ class Calculator implements Parcelable{
         else {
             switch (mBase) {
                 case BIN:
-                    return inputBinary(digit);
+                    return inputInBase(digit, 1);
                 case DEC:
                     return inputDecimal(digit);
                 case HEX:
-                    return inputHexadecimal(digit);
+                    return inputInBase(digit, 4);
             }
         }
+
+        return true;
+    }
+
+    /**
+     * Appends digit to mInput.
+     * @param digit Digit to append.
+     * @param digitSize Number of bits in digit.
+     * @return Digit was appended to mInput.
+     */
+    private boolean inputInBase(int digit, int digitSize) {
+        //Count number of bits already input in mInput.
+        int val = mInput;
+        int count;
+        for (count = 0; val != 0; count++) {
+            val >>>= digitSize;
+        }
+
+        //Max number of digits for 32 bit integer have been input.
+        //Number of digits that fit into integer is 32 / digitSize,
+        //e.g. 32 for bin (digit size 1), and 8 for hex (digit size 4).
+        if (count == 32 / digitSize) {
+            return false;
+        }
+
+        //Shift mInput by 1, and OR digit
+        mInput <<= digitSize;
+        mInput |= digit;
 
         return true;
     }
@@ -104,25 +132,6 @@ class Calculator implements Parcelable{
         }
 
         mInput = mInput * 10 + digit;
-
-        return true;
-    }
-
-    private boolean inputHexadecimal(int digit) {
-        //Count number of hex digits
-        int val = mInput;
-        int count;
-        for (count = 0; val != 0; count++) {
-            val >>>= 4;
-        }
-
-        //Has reached max hex digits
-        if (count == 8) {
-            return false;
-        }
-
-        mInput <<= 4;
-        mInput |= digit;
 
         return true;
     }
