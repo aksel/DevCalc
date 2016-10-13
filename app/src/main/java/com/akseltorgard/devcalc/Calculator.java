@@ -20,14 +20,12 @@ class Calculator implements Parcelable{
     private int mOperand;
 
     private int mBase;
-    private int mMaxLength;
 
     private Operator mOperator;
 
     Calculator() {
         mInput = 0;
         mBase = DEC;
-        mMaxLength = 10;
     }
 
     int getBase() {
@@ -68,24 +66,12 @@ class Calculator implements Parcelable{
     }
 
     boolean setBase(int base) {
-        if (base != mBase) {
-            mBase = base;
-
-            switch (base) {
-                case BIN:
-                    mMaxLength = 32;
-                    break;
-                case DEC:
-                    mMaxLength = 10;
-                    break;
-                case HEX:
-                    mMaxLength = 8;
-                    break;
-            }
-
-            return true;
+        if (base == mBase) {
+            return false;
         }
-        return false;
+
+        mBase = base;
+        return true;
     }
 
     void setOperator(Operator operator) {
