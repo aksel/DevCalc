@@ -91,6 +91,25 @@ class Calculator implements Parcelable{
     }
 
     /**
+     * Returns boolean[32], with state of all bits in mInput. true = 1, false = 0.
+     * @return State of bits in mInput.
+     */
+    boolean[] getBits() {
+        boolean[] bits = new boolean[32];
+
+        int lsbIndex = 31;
+
+        int val = mInput;
+        while (val != 0) {
+            bits[lsbIndex] = (val & 1) == 1;
+            lsbIndex--;
+            val >>>= 1;
+        }
+
+        return bits;
+    }
+
+    /**
      * Produces string that represents mInput in base mBase.
      * @return String of mInput in mBase.
      */

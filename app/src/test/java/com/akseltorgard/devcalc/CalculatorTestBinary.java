@@ -2,7 +2,11 @@ package com.akseltorgard.devcalc;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static com.akseltorgard.devcalc.Calculator.BIN;
+import static com.akseltorgard.devcalc.Calculator.HEX;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class CalculatorTestBinary {
@@ -128,5 +132,31 @@ public class CalculatorTestBinary {
         calculator.backspace();
 
         assertEquals("0", calculator.getInputString());
+    }
+
+    @Test
+    public void testGetBits() {
+        Calculator calculator = new Calculator();
+        calculator.setBase(HEX);
+
+        for (int i = 0; i < 8; i++) {
+            calculator.inputDigit("f");
+        }
+
+        boolean[] bits = calculator.getBits();
+
+        boolean[] allTrue = new boolean[32];
+        Arrays.fill(allTrue, true);
+
+        assertArrayEquals(bits, allTrue);
+
+        calculator.backspace();
+        calculator.backspace();
+
+        Arrays.fill(allTrue, 0, 8, false);
+
+        bits = calculator.getBits();
+
+        assertArrayEquals(bits, allTrue);
     }
 }
