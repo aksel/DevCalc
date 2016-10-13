@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         initDisplay();
-        //initBaseButtons();
+        initBaseButtons();
         initNumberButtons();
         initOperatorButtons();
     }
