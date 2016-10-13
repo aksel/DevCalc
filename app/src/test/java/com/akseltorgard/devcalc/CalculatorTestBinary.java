@@ -2,7 +2,7 @@ package com.akseltorgard.devcalc;
 
 import org.junit.Test;
 
-import static com.akseltorgard.devcalc.Calculator.*;
+import static com.akseltorgard.devcalc.Calculator.BIN;
 import static org.junit.Assert.assertEquals;
 
 public class CalculatorTestBinary {

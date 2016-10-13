@@ -109,7 +109,22 @@ class Calculator implements Parcelable{
     }
 
     private boolean inputHexadecimal(int digit) {
-        return false;
+        //Count number of hex digits
+        int val = mInput;
+        int count;
+        for (count = 0; val != 0; count++) {
+            val >>>= 4;
+        }
+
+        //Has reached max hex digits
+        if (count == 8) {
+            return false;
+        }
+
+        mInput <<= 4;
+        mInput |= digit;
+
+        return true;
     }
 
     boolean setBase(int base) {
