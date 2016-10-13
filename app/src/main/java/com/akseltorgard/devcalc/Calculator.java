@@ -19,6 +19,10 @@ class Calculator implements Parcelable{
      */
     private int mOperand;
 
+    /**
+     * Base to expect in inputDigit(), and to produce in getInputString().
+     * Should be BIN, DEC or HEX.
+     */
     private int mBase;
 
     private Operator mOperator;
@@ -28,11 +32,69 @@ class Calculator implements Parcelable{
         mBase = DEC;
     }
 
+    /**
+     * Deletes last digit of mInput, based on mBase.
+     * @return Whether or not mInput changed.
+     */
+    boolean backspace() {
+        if (mInput == 0) {
+            return false;
+        }
+
+        switch (mBase) {
+            case BIN:
+                mInput >>>= 1;
+                break;
+            case DEC:
+                mInput /= 10;
+                break;
+            case HEX:
+                mInput >>>= 4;
+                break;
+        }
+
+        return true;
+    }
+
+    /**
+     * Clears input, i.e. sets it to 0.
+     * @return Whether or not mInput changed.
+     */
+    boolean clear() {
+        if (mInput == 0) {
+            return false;
+        }
+
+        else {
+            mInput = 0;
+            return true;
+        }
+    }
+
+    /**
+     * Adds spaces between digits at multiples of @spacing.
+     * @param string String to format.
+     * @param spacing Where to insert spaces.
+     * @return Formatted string.
+     */
+    private String formatStringSpacing(String string, int spacing) {
+        StringBuilder sb = new StringBuilder(string);
+        for (int i = string.length()-spacing; i > 0; i-=spacing) {
+            sb.insert(i, " ");
+        }
+
+        return sb.toString();
+    }
+
     int getBase() {
         return mBase;
     }
 
-    String getInput() {
+    /**
+     * Produces string that represents mInput in base mBase.
+     * @return String of mInput in mBase.
+     */
+    String getInputString() {
         switch (mBase) {
             case BIN:
                 String binaryString = Integer.toBinaryString(mInput);
@@ -47,26 +109,12 @@ class Calculator implements Parcelable{
         }
     }
 
-    private String formatStringSpacing(String string, int spacing) {
-        StringBuilder sb = new StringBuilder(string);
-        for (int i = string.length()-spacing; i > 0; i-=spacing) {
-            sb.insert(i, " ");
-        }
-
-        return sb.toString();
-    }
-
     /**
      * Appends digit to mInput.
-     * mInput is multiplied by 10, and digit is added to it.
-     * If the result would be greater than Integer.MAX_VALUE,
-     * mInput instead becomes Integer.MAX_VALUE.
-     * If mInput already is Integer.MAX_VALUE, nothing happens.
      * @param digitString Digit to append.
-     * @return Number was successfully appended.
+     * @return Digit was appended to mInput.
      */
-    boolean inputNumber(String digitString) {
-
+    boolean inputDigit(String digitString) {
         int digit = Integer.parseInt(digitString, mBase);
 
         if (mInput == 0) {
@@ -115,6 +163,11 @@ class Calculator implements Parcelable{
         return true;
     }
 
+    /**
+     * Appends digit to mInput.
+     * @param digit Digit to append.
+     * @return Digit was appended to mInput.
+     */
     private boolean inputDecimal(int digit) {
         if (mInput == Integer.MAX_VALUE ||
                 mInput > (Integer.MAX_VALUE / 10) ||
@@ -141,9 +194,7 @@ class Calculator implements Parcelable{
         mOperand = mInput;
     }
 
-    /**
-     * Below this line is the implementation of Parcelable.
-     */
+    //Below this line is the implementation of Parcelable.
 
     private Calculator(Parcel in) {
         mInput = in.readInt();

@@ -13,13 +13,13 @@ public class CalculatorTestBinary {
 
         calculator.setBase(BIN);
 
-        calculator.inputNumber("1");
+        calculator.inputDigit("1");
 
-        assertEquals("1", calculator.getInput());
+        assertEquals("1", calculator.getInputString());
 
-        calculator.inputNumber("0");
+        calculator.inputDigit("0");
 
-        assertEquals("10", calculator.getInput());
+        assertEquals("10", calculator.getInputString());
     }
 
     @Test
@@ -29,10 +29,10 @@ public class CalculatorTestBinary {
         calculator.setBase(BIN);
 
         for (int i = 0; i < 32; i++) {
-            calculator.inputNumber("1");
+            calculator.inputDigit("1");
         }
 
-        assertEquals("11111111 11111111 11111111 11111111", calculator.getInput());
+        assertEquals("11111111 11111111 11111111 11111111", calculator.getInputString());
     }
 
     @Test
@@ -42,10 +42,10 @@ public class CalculatorTestBinary {
         calculator.setBase(BIN);
 
         for (int i = 0; i < 33; i++) {
-            calculator.inputNumber("1");
+            calculator.inputDigit("1");
         }
 
-        assertEquals("11111111 11111111 11111111 11111111", calculator.getInput());
+        assertEquals("11111111 11111111 11111111 11111111", calculator.getInputString());
     }
 
     @Test
@@ -55,14 +55,14 @@ public class CalculatorTestBinary {
         calculator.setBase(BIN);
 
         for (int i = 0; i < 10; i++) {
-            calculator.inputNumber("0");
+            calculator.inputDigit("0");
         }
 
         for (int i = 0; i < 10; i++) {
-            calculator.inputNumber("1");
+            calculator.inputDigit("1");
         }
 
-        assertEquals("11 11111111", calculator.getInput());
+        assertEquals("11 11111111", calculator.getInputString());
     }
 
     @Test
@@ -72,18 +72,18 @@ public class CalculatorTestBinary {
         calculator.setBase(BIN);
 
         for (int i = 0; i < 8; i++) {
-            calculator.inputNumber("1");
+            calculator.inputDigit("1");
         }
 
         for (int i = 0; i < 8; i++) {
-            calculator.inputNumber("0");
+            calculator.inputDigit("0");
         }
 
         for (int i = 0; i < 8; i++) {
-            calculator.inputNumber("1");
+            calculator.inputDigit("1");
         }
 
-        assertEquals("11111111 00000000 11111111", calculator.getInput());
+        assertEquals("11111111 00000000 11111111", calculator.getInputString());
     }
 
     @Test
@@ -94,14 +94,39 @@ public class CalculatorTestBinary {
 
         for (int i = 0; i < 32; i++) {
             if (i%2 == 0) {
-                calculator.inputNumber("1");
+                calculator.inputDigit("1");
             }
 
             else {
-                calculator.inputNumber("0");
+                calculator.inputDigit("0");
             }
         }
 
-        assertEquals("10101010 10101010 10101010 10101010", calculator.getInput());
+        assertEquals("10101010 10101010 10101010 10101010", calculator.getInputString());
+    }
+
+    @Test
+    public void testBackspace() {
+        Calculator calculator = new Calculator();
+        calculator.setBase(BIN);
+
+        calculator.inputDigit("1");
+        calculator.inputDigit("0");
+        calculator.inputDigit("1");
+
+        assertEquals("101", calculator.getInputString());
+
+        calculator.backspace();
+
+        assertEquals("10", calculator.getInputString());
+
+        calculator.backspace();
+        calculator.backspace();
+
+        assertEquals("0", calculator.getInputString());
+
+        calculator.backspace();
+
+        assertEquals("0", calculator.getInputString());
     }
 }

@@ -9,13 +9,13 @@ public class CalculatorTestDecimal {
     public void testInput() {
         Calculator calculator = new Calculator();
 
-        calculator.inputNumber("1");
+        calculator.inputDigit("1");
 
-        assertEquals("1", calculator.getInput());
+        assertEquals("1", calculator.getInputString());
 
-        calculator.inputNumber("1");
+        calculator.inputDigit("1");
 
-        assertEquals("11", calculator.getInput());
+        assertEquals("11", calculator.getInputString());
     }
 
     @Test
@@ -23,10 +23,10 @@ public class CalculatorTestDecimal {
         Calculator calculator = new Calculator();
 
         for (int i = 0; i < 25; i++) {
-            calculator.inputNumber("1");
+            calculator.inputDigit("1");
         }
 
-        assertEquals("1111111111", calculator.getInput());
+        assertEquals("1111111111", calculator.getInputString());
     }
 
     @Test
@@ -36,10 +36,10 @@ public class CalculatorTestDecimal {
         Calculator calculator = new Calculator();
 
         for (char c : maxValue.toCharArray()) {
-            calculator.inputNumber(c + "");
+            calculator.inputDigit(c + "");
         }
 
-        assertEquals(maxValue, calculator.getInput());
+        assertEquals(maxValue, calculator.getInputString());
     }
 
     @Test
@@ -49,10 +49,10 @@ public class CalculatorTestDecimal {
         Calculator calculator = new Calculator();
 
         for (char c : inputValue.toCharArray()) {
-            calculator.inputNumber(c + "");
+            calculator.inputDigit(c + "");
         }
 
-        assertEquals("214748364", calculator.getInput());
+        assertEquals("214748364", calculator.getInputString());
     }
 
     @Test
@@ -61,10 +61,10 @@ public class CalculatorTestDecimal {
         Calculator calculator = new Calculator();
 
         for (char c : inputValue.toCharArray()) {
-            calculator.inputNumber(c + "");
+            calculator.inputDigit(c + "");
         }
 
-        assertEquals("2147483646", calculator.getInput());
+        assertEquals("2147483646", calculator.getInputString());
     }
 
     @Test
@@ -73,17 +73,41 @@ public class CalculatorTestDecimal {
         Calculator calculator = new Calculator();
 
         for (char c : inputValue.toCharArray()) {
-            calculator.inputNumber(c + "");
+            calculator.inputDigit(c + "");
         }
 
-        assertEquals("214748364", calculator.getInput());
+        assertEquals("214748364", calculator.getInputString());
 
-        calculator.inputNumber("7");
+        calculator.inputDigit("7");
 
-        assertEquals("2147483647", calculator.getInput());
+        assertEquals("2147483647", calculator.getInputString());
 
-        calculator.inputNumber("1");
+        calculator.inputDigit("1");
 
-        assertEquals("2147483647", calculator.getInput());
+        assertEquals("2147483647", calculator.getInputString());
+    }
+
+    @Test
+    public void testBackspace() {
+        Calculator calculator = new Calculator();
+
+        calculator.inputDigit("9");
+        calculator.inputDigit("8");
+        calculator.inputDigit("7");
+
+        assertEquals("987", calculator.getInputString());
+
+        calculator.backspace();
+
+        assertEquals("98", calculator.getInputString());
+
+        calculator.backspace();
+        calculator.backspace();
+
+        assertEquals("0", calculator.getInputString());
+
+        calculator.backspace();
+
+        assertEquals("0", calculator.getInputString());
     }
 }

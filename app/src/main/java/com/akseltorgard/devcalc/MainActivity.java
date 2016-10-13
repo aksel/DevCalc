@@ -36,12 +36,28 @@ public class MainActivity extends AppCompatActivity {
 
         if (savedInstanceState != null) {
             mCalculator = savedInstanceState.getParcelable(KEY_CALCULATOR);
-            Log.d(TAG, mCalculator.getInput());
+            Log.d(TAG, mCalculator.getInputString());
         }
 
         else {
             mCalculator = new Calculator();
         }
+
+        Button backspaceButton = (Button) findViewById(R.id.button_backspace);
+        backspaceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backspace();
+            }
+        });
+
+        Button clearButton = (Button) findViewById(R.id.button_clear);
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clear();
+            }
+        });
 
         initDisplay();
         initBaseButtons();
@@ -52,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     private void initDisplay() {
         mInput = (TextView) findViewById(R.id.text_view_input);
         mInput.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
-        mInput.setText(mCalculator.getInput());
+        mInput.setText(mCalculator.getInputString());
     }
 
     /**
@@ -169,21 +185,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void numberPressed(String number) {
-        Log.d(TAG, "PRESSED:" + number);
-
-        if (mCalculator.inputNumber(number)) {
-            mInput.setText(mCalculator.getInput());
-        }
-
-        else {
-            SoundPool soundPool = SoundPoolManager.getSoundPool();
-            soundPool.play(soundPool.load(this, R.raw.boop, 1), 1, 1, 0, 0, 1);
+    private void backspace() {
+        if (mCalculator.backspace()) {
+            updateDisplay();
         }
     }
 
-    private void operatorPressed(Operator operator) {
-        Log.d(TAG, "PRESSED: " + operator.name());
+    private void clear() {
+        if (mCalculator.clear()) {
+            updateDisplay();
+        }
     }
 
     /**
@@ -193,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
     private void changeBase(int base) {
         if (mCalculator.setBase(base)) {
             enableButtonsInRange(base);
-            mInput.setText(mCalculator.getInput());
+            mInput.setText(mCalculator.getInputString());
         }
     }
 
@@ -207,6 +218,27 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < mNumbers.length; i++) {
             mNumbers[i].setEnabled(i < base);
         }
+    }
+
+    private void numberPressed(String number) {
+        Log.d(TAG, "PRESSED:" + number);
+
+        if (mCalculator.inputDigit(number)) {
+            updateDisplay();
+        }
+
+        else {
+            SoundPool soundPool = SoundPoolManager.getSoundPool();
+            soundPool.play(soundPool.load(this, R.raw.boop, 1), 1, 1, 0, 0, 1);
+        }
+    }
+
+    private void operatorPressed(Operator operator) {
+        Log.d(TAG, "PRESSED: " + operator.name());
+    }
+
+    private void updateDisplay() {
+        mInput.setText(mCalculator.getInputString());
     }
 
     @Override

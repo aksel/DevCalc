@@ -13,13 +13,13 @@ public class CalculatorTestHexadecimal {
 
         calculator.setBase(HEX);
 
-        calculator.inputNumber("f");
+        calculator.inputDigit("f");
 
-        assertEquals("f", calculator.getInput());
+        assertEquals("f", calculator.getInputString());
 
-        calculator.inputNumber("f");
+        calculator.inputDigit("f");
 
-        assertEquals("ff", calculator.getInput());
+        assertEquals("ff", calculator.getInputString());
     }
 
     @Test
@@ -29,10 +29,10 @@ public class CalculatorTestHexadecimal {
         calculator.setBase(HEX);
 
         for (int i = 0; i < 8; i++) {
-            calculator.inputNumber("f");
+            calculator.inputDigit("f");
         }
 
-        assertEquals("ff ff ff ff", calculator.getInput());
+        assertEquals("ff ff ff ff", calculator.getInputString());
     }
 
     @Test
@@ -42,10 +42,10 @@ public class CalculatorTestHexadecimal {
         calculator.setBase(HEX);
 
         for (int i = 0; i < 9; i++) {
-            calculator.inputNumber("f");
+            calculator.inputDigit("f");
         }
 
-        assertEquals("ff ff ff ff", calculator.getInput());
+        assertEquals("ff ff ff ff", calculator.getInputString());
     }
 
     @Test
@@ -55,14 +55,14 @@ public class CalculatorTestHexadecimal {
         calculator.setBase(HEX);
 
         for (int i = 0; i < 2; i++) {
-            calculator.inputNumber("0");
+            calculator.inputDigit("0");
         }
 
         for (int i = 0; i < 2; i++) {
-            calculator.inputNumber("f");
+            calculator.inputDigit("f");
         }
 
-        assertEquals("ff", calculator.getInput());
+        assertEquals("ff", calculator.getInputString());
     }
 
     @Test
@@ -71,16 +71,16 @@ public class CalculatorTestHexadecimal {
 
         calculator.setBase(HEX);
 
-        calculator.inputNumber("f");
-        calculator.inputNumber("f");
+        calculator.inputDigit("f");
+        calculator.inputDigit("f");
 
-        calculator.inputNumber("0");
-        calculator.inputNumber("0");
+        calculator.inputDigit("0");
+        calculator.inputDigit("0");
 
-        calculator.inputNumber("f");
-        calculator.inputNumber("f");
+        calculator.inputDigit("f");
+        calculator.inputDigit("f");
 
-        assertEquals("ff 00 ff", calculator.getInput());
+        assertEquals("ff 00 ff", calculator.getInputString());
     }
 
     @Test
@@ -91,15 +91,15 @@ public class CalculatorTestHexadecimal {
 
         for (int i = 0; i < 8; i++) {
             if (i%2 == 0) {
-                calculator.inputNumber("f");
+                calculator.inputDigit("f");
             }
 
             else {
-                calculator.inputNumber("0");
+                calculator.inputDigit("0");
             }
         }
 
-        assertEquals("f0 f0 f0 f0", calculator.getInput());
+        assertEquals("f0 f0 f0 f0", calculator.getInputString());
     }
 
     @Test
@@ -111,10 +111,10 @@ public class CalculatorTestHexadecimal {
         String input = "fedcba98";
 
         for (char h : input.toCharArray()) {
-            calculator.inputNumber(h + "");
+            calculator.inputDigit(h + "");
         }
 
-        assertEquals("fe dc ba 98", calculator.getInput());
+        assertEquals("fe dc ba 98", calculator.getInputString());
     }
 
     @Test
@@ -126,9 +126,35 @@ public class CalculatorTestHexadecimal {
         String input = "76543210";
 
         for (char h : input.toCharArray()) {
-            calculator.inputNumber(h + "");
+            calculator.inputDigit(h + "");
         }
 
-        assertEquals("76 54 32 10", calculator.getInput());
+        assertEquals("76 54 32 10", calculator.getInputString());
+    }
+
+    @Test
+    public void testBackspace() {
+        Calculator calculator = new Calculator();
+
+        calculator.setBase(HEX);
+
+        calculator.inputDigit("f");
+        calculator.inputDigit("f");
+        calculator.inputDigit("f");
+
+        assertEquals("f ff", calculator.getInputString());
+
+        calculator.backspace();
+
+        assertEquals("ff", calculator.getInputString());
+
+        calculator.backspace();
+        calculator.backspace();
+
+        assertEquals("0", calculator.getInputString());
+
+        calculator.backspace();
+
+        assertEquals("0", calculator.getInputString());
     }
 }
