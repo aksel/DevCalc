@@ -39,8 +39,11 @@ class Calculator implements Parcelable{
     }
 
     /**
-     * Appends number to mInput if possible. Returns false if max number of digits has been
-     * reached for current input type (dec = 10, hex = 8, bin = 32). Otherwise returns true.
+     * Appends digit to mInput.
+     * mInput is multiplied by 10, and digit is added to it.
+     * If the result would be greater than Integer.MAX_VALUE,
+     * mInput instead becomes Integer.MAX_VALUE.
+     * If mInput already is Integer.MAX_VALUE, nothing happens.
      * @param digitString Digit to append.
      * @return Number was successfully appended.
      */
@@ -50,11 +53,16 @@ class Calculator implements Parcelable{
 
         if (mInput == 0) {
             mInput = digit;
+            return true;
         }
 
-        else {
-            mInput = mInput * 10 + digit;
+        else if (mInput == Integer.MAX_VALUE ||
+                 mInput > (Integer.MAX_VALUE / 10) ||
+                 digit > Integer.MAX_VALUE - mInput*10) {
+            return false;
         }
+
+        mInput = mInput * 10 + digit;
 
         return true;
     }
