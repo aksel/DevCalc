@@ -35,14 +35,25 @@ class Calculator implements Parcelable{
     String getInput() {
         switch (mBase) {
             case BIN:
-                return Integer.toBinaryString(mInput);
+                String binaryString = Integer.toBinaryString(mInput);
+                return formatStringSpacing(binaryString, 8);
             case DEC:
                 return Integer.toString(mInput);
             case HEX:
-                return Integer.toHexString(mInput);
+                String hexString = Integer.toHexString(mInput);
+                return formatStringSpacing(hexString, 2);
             default:
                 throw new NumberFormatException("Improper base: " + mBase);
         }
+    }
+
+    private String formatStringSpacing(String string, int spacing) {
+        StringBuilder sb = new StringBuilder(string);
+        for (int i = string.length()-spacing; i > 0; i-=spacing) {
+            sb.insert(i, " ");
+        }
+
+        return sb.toString();
     }
 
     /**

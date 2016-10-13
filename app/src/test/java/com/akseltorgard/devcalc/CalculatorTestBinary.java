@@ -32,7 +32,7 @@ public class CalculatorTestBinary {
             calculator.inputNumber("1");
         }
 
-        assertEquals("11111111111111111111111111111111", calculator.getInput());
+        assertEquals("11111111 11111111 11111111 11111111", calculator.getInput());
     }
 
     @Test
@@ -45,7 +45,7 @@ public class CalculatorTestBinary {
             calculator.inputNumber("1");
         }
 
-        assertEquals("11111111111111111111111111111111", calculator.getInput());
+        assertEquals("11111111 11111111 11111111 11111111", calculator.getInput());
     }
 
     @Test
@@ -62,7 +62,7 @@ public class CalculatorTestBinary {
             calculator.inputNumber("1");
         }
 
-        assertEquals("1111111111", calculator.getInput());
+        assertEquals("11 11111111", calculator.getInput());
     }
 
     @Test
@@ -83,7 +83,7 @@ public class CalculatorTestBinary {
             calculator.inputNumber("1");
         }
 
-        assertEquals("111111110000000011111111", calculator.getInput());
+        assertEquals("11111111 00000000 11111111", calculator.getInput());
     }
 
     @Test
@@ -102,6 +102,6 @@ public class CalculatorTestBinary {
             }
         }
 
-        assertEquals("10101010101010101010101010101010", calculator.getInput());
+        assertEquals("10101010 10101010 10101010 10101010", calculator.getInput());
     }
 }

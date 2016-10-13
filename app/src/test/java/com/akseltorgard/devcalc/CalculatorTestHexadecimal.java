@@ -32,7 +32,7 @@ public class CalculatorTestHexadecimal {
             calculator.inputNumber("f");
         }
 
-        assertEquals("ffffffff", calculator.getInput());
+        assertEquals("ff ff ff ff", calculator.getInput());
     }
 
     @Test
@@ -45,7 +45,7 @@ public class CalculatorTestHexadecimal {
             calculator.inputNumber("f");
         }
 
-        assertEquals("ffffffff", calculator.getInput());
+        assertEquals("ff ff ff ff", calculator.getInput());
     }
 
     @Test
@@ -80,7 +80,7 @@ public class CalculatorTestHexadecimal {
         calculator.inputNumber("f");
         calculator.inputNumber("f");
 
-        assertEquals("ff00ff", calculator.getInput());
+        assertEquals("ff 00 ff", calculator.getInput());
     }
 
     @Test
@@ -99,7 +99,7 @@ public class CalculatorTestHexadecimal {
             }
         }
 
-        assertEquals("f0f0f0f0", calculator.getInput());
+        assertEquals("f0 f0 f0 f0", calculator.getInput());
     }
 
     @Test
@@ -114,7 +114,7 @@ public class CalculatorTestHexadecimal {
             calculator.inputNumber(h + "");
         }
 
-        assertEquals("fedcba98", calculator.getInput());
+        assertEquals("fe dc ba 98", calculator.getInput());
     }
 
     @Test
@@ -129,6 +129,6 @@ public class CalculatorTestHexadecimal {
             calculator.inputNumber(h + "");
         }
 
-        assertEquals("76543210", calculator.getInput());
+        assertEquals("76 54 32 10", calculator.getInput());
     }
 }
