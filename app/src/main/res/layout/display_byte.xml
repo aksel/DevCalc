@@ -23,18 +23,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <include layout="@layout/display_bit"/>
-        <include layout="@layout/display_bit"/>
-        <include layout="@layout/display_bit"/>
-        <include layout="@layout/display_bit"/>
+        <include
+            layout="@layout/display_bit"
+            android:id="@+id/bit_8"/>
+
+        <include
+            layout="@layout/display_bit"
+            android:id="@+id/bit_7"/>
+        <include
+            layout="@layout/display_bit"
+            android:id="@+id/bit_6"/>
+        <include
+            layout="@layout/display_bit"
+            android:id="@+id/bit_5"/>
 
         <Space
             android:layout_width="6sp"
             android:layout_height="match_parent"/>
 
-        <include layout="@layout/display_bit"/>
-        <include layout="@layout/display_bit"/>
-        <include layout="@layout/display_bit"/>
-        <include layout="@layout/display_bit"/>
+        <include
+            layout="@layout/display_bit"
+            android:id="@+id/bit_4"/>
+
+        <include
+            layout="@layout/display_bit"
+            android:id="@+id/bit_3"/>
+        <include
+            layout="@layout/display_bit"
+            android:id="@+id/bit_2"/>
+        <include
+            layout="@layout/display_bit"
+            android:id="@+id/bit_1"/>
+
     </LinearLayout>
 </LinearLayout>
