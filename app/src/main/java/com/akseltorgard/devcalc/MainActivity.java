@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (savedInstanceState != null) {
             mCalculator = savedInstanceState.getParcelable(KEY_CALCULATOR);
-            Log.d(TAG, mCalculator.getInputString());
         }
 
         else {
@@ -67,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         initBaseButtons();
         initNumberButtons();
         initOperatorButtons();
+
+        updateDisplay();
     }
 
     private void initDisplay() {
@@ -123,11 +124,6 @@ public class MainActivity extends AppCompatActivity {
             bitButtons[bitIndex].setTag(bitIndex);
             bitButtons[bitIndex++].setOnClickListener(bitButtonListener);
         }
-    }
-
-    private void toggleBit(ToggleButton b) {
-        mCalculator.toggleBit((int)b.getTag());
-        updateDisplay();
     }
 
     /**
@@ -296,6 +292,11 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "PRESSED: " + operator.name());
     }
 
+    private void toggleBit(ToggleButton b) {
+        mCalculator.toggleBit((int)b.getTag());
+        updateDisplay();
+    }
+
     private void updateDisplay() {
         mInput.setText(mCalculator.getInputString());
 
@@ -304,6 +305,18 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < 32; i++) {
             bitButtons[i].setChecked(bits[i]);
         }
+
+        String hexString = mCalculator.getHexString();
+
+        TextView hex1 = (TextView) findViewById(R.id.byte_1).findViewById(R.id.display_hex);
+        TextView hex2 = (TextView) findViewById(R.id.byte_2).findViewById(R.id.display_hex);
+        TextView hex3 = (TextView) findViewById(R.id.byte_3).findViewById(R.id.display_hex);
+        TextView hex4 = (TextView) findViewById(R.id.byte_4).findViewById(R.id.display_hex);
+
+        hex1.setText(hexString.substring(6,8));
+        hex2.setText(hexString.substring(4,6));
+        hex3.setText(hexString.substring(2,4));
+        hex4.setText(hexString.substring(0,2));
     }
 
     @Override

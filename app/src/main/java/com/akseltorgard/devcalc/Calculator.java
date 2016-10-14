@@ -9,6 +9,11 @@ class Calculator implements Parcelable{
     static final int DEC = 10;
     static final int HEX = 16;
 
+    static final int BYTE_1_MASK = 0xff;
+    static final int BYTE_2_MASK = 0xff00;
+    static final int BYTE_3_MASK = 0xff0000;
+    static final int BYTE_4_MASK = 0xff000000;
+
     /**
      * Current calculator input.
      */
@@ -108,6 +113,21 @@ class Calculator implements Parcelable{
         }
 
         return bits;
+    }
+
+    /**
+     * Returns mInput as hex string, padded with 0's until length == 8.
+     * @return mInput as hex string.
+     */
+    String getHexString() {
+
+        String hexString = Integer.toHexString(mInput).toUpperCase();
+
+        while (hexString.length() < 8) {
+            hexString = "0" + hexString;
+        }
+
+        return hexString;
     }
 
     /**
@@ -249,4 +269,6 @@ class Calculator implements Parcelable{
             return new Calculator[size];
         }
     };
+
+
 }
