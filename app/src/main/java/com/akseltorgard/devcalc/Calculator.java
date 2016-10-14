@@ -92,17 +92,18 @@ class Calculator implements Parcelable{
 
     /**
      * Returns boolean[32], with state of all bits in mInput. true = 1, false = 0.
+     * LSB of 32 bit integer is at index 0, MSB is at index 31.
      * @return State of bits in mInput.
      */
     boolean[] getBits() {
         boolean[] bits = new boolean[32];
 
-        int lsbIndex = 31;
+        int bitIndex = 0;
 
         int val = mInput;
         while (val != 0) {
-            bits[lsbIndex] = (val & 1) == 1;
-            lsbIndex--;
+            bits[bitIndex] = (val & 1) == 1;
+            bitIndex++;
             val >>>= 1;
         }
 
@@ -110,7 +111,7 @@ class Calculator implements Parcelable{
     }
 
     /**
-     * Produces string that represents mInput in base mBase.
+     * Produces string that represents mInput in base mBase, formatted if need be.
      * @return String of mInput in mBase.
      */
     String getInputString() {
@@ -211,6 +212,10 @@ class Calculator implements Parcelable{
     void setOperator(Operator operator) {
         mOperator = operator;
         mOperand = mInput;
+    }
+
+    void toggleBit(int bitIndex) {
+        mInput ^= (1 << bitIndex);
     }
 
     //Below this line is the implementation of Parcelable.

@@ -139,24 +139,48 @@ public class CalculatorTestBinary {
         Calculator calculator = new Calculator();
         calculator.setBase(HEX);
 
-        for (int i = 0; i < 8; i++) {
-            calculator.inputDigit("f");
-        }
+        calculator.inputDigit("f");
+        calculator.inputDigit("f");
+        calculator.inputDigit("0");
+        calculator.inputDigit("0");
+        calculator.inputDigit("f");
+        calculator.inputDigit("f");
+        calculator.inputDigit("0");
+        calculator.inputDigit("0");
 
         boolean[] bits = calculator.getBits();
 
-        boolean[] allTrue = new boolean[32];
-        Arrays.fill(allTrue, true);
+        boolean[] expected1 = {
+                false, false, false, false, //0
+                false, false, false, false, //0
+                true, true, true, true,     //F
+                true, true, true, true,     //F
+                false, false, false, false, //0
+                false, false, false, false,  //0
+                true, true, true, true,     //F
+                true, true, true, true     //F
+        };
 
-        assertArrayEquals(bits, allTrue);
+        assertArrayEquals(expected1, bits);
 
         calculator.backspace();
         calculator.backspace();
+        calculator.backspace();
+        calculator.backspace();
 
-        Arrays.fill(allTrue, 0, 8, false);
+        boolean[] expected2 = {
+                false, false, false, false, //0
+                false, false, false, false, //0
+                true, true, true, true,     //F
+                true, true, true, true,     //F
+                false, false, false, false, //0
+                false, false, false, false, //0
+                false, false, false, false, //0
+                false, false, false, false  //0
+        };
 
         bits = calculator.getBits();
 
-        assertArrayEquals(bits, allTrue);
+        assertArrayEquals(expected2, bits);
     }
 }
