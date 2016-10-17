@@ -2,7 +2,7 @@ package com.akseltorgard.devcalc;
 
 import org.junit.Test;
 
-import static com.akseltorgard.devcalc.Calculator.HEX;
+import static com.akseltorgard.devcalc.Base.HEX;
 import static org.junit.Assert.assertEquals;
 
 public class CalculatorTestHexadecimal {

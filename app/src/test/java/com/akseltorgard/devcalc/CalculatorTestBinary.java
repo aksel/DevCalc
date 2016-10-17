@@ -4,8 +4,8 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-import static com.akseltorgard.devcalc.Calculator.BIN;
-import static com.akseltorgard.devcalc.Calculator.HEX;
+import static com.akseltorgard.devcalc.Base.BIN;
+import static com.akseltorgard.devcalc.Base.HEX;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 

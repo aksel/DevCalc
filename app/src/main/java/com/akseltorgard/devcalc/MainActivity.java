@@ -14,6 +14,7 @@ import android.widget.ToggleButton;
 
 import java.util.HashMap;
 
+import static com.akseltorgard.devcalc.Base.*;
 import static com.akseltorgard.devcalc.Operator.*;
 
 public class MainActivity extends AppCompatActivity {
@@ -123,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         binButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeBase(Calculator.BIN);
+                changeBase(BIN);
             }
         });
 
@@ -131,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         decButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeBase(Calculator.DEC);
+                changeBase(DEC);
             }
         });
 
@@ -139,18 +140,18 @@ public class MainActivity extends AppCompatActivity {
         hexButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeBase(Calculator.HEX);
+                changeBase(HEX);
             }
         });
 
         switch (mCalculator.getBase()) {
-            case Calculator.BIN:
+            case BIN:
                 binButton.setChecked(true);
                 break;
-            case Calculator.DEC:
+            case DEC:
                 decButton.setChecked(true);
                 break;
-            case Calculator.HEX:
+            case HEX:
                 hexButton.setChecked(true);
                 break;
         }
@@ -245,7 +246,7 @@ public class MainActivity extends AppCompatActivity {
      * Changes base in Calculator. If base is changed, calls enableButtonsInRange(base);
      * @param base Base to change to.
      */
-    private void changeBase(int base) {
+    private void changeBase(Base base) {
         if (mCalculator.setBase(base)) {
             enableButtonsInRange(base);
             mInput.setText(mCalculator.getInputString());
@@ -258,9 +259,9 @@ public class MainActivity extends AppCompatActivity {
      * They get enabled, while the rest get disabled.
      * @param base Base 2, 10 or 16, i.e. binary, decimal or hexadecimal.
      */
-    private void enableButtonsInRange(int base) {
+    private void enableButtonsInRange(Base base) {
         for (int i = 0; i < mNumbers.length; i++) {
-            mNumbers[i].setEnabled(i < base);
+            mNumbers[i].setEnabled(i < base.toInt());
         }
     }
 

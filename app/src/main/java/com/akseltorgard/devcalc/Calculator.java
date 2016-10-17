@@ -3,16 +3,11 @@ package com.akseltorgard.devcalc;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import static com.akseltorgard.devcalc.Base.*;
+
 class Calculator implements Parcelable{
 
-    static final int BIN = 2;
-    static final int DEC = 10;
-    static final int HEX = 16;
 
-    static final int BYTE_1_MASK = 0xff;
-    static final int BYTE_2_MASK = 0xff00;
-    static final int BYTE_3_MASK = 0xff0000;
-    static final int BYTE_4_MASK = 0xff000000;
 
     /**
      * Current calculator input.
@@ -28,7 +23,7 @@ class Calculator implements Parcelable{
      * Base to expect in inputDigit(), and to produce in getInputString().
      * Should be BIN, DEC or HEX.
      */
-    private int mBase;
+    private Base mBase;
 
     private Operator mOperator;
 
@@ -47,14 +42,11 @@ class Calculator implements Parcelable{
         }
 
         switch (mBase) {
-            case BIN:
-                mInput >>>= 1;
+            case BIN: case HEX:
+                mInput >>>= mBase.getDigitSize();
                 break;
             case DEC:
                 mInput /= 10;
-                break;
-            case HEX:
-                mInput >>>= 4;
                 break;
         }
 
@@ -91,7 +83,7 @@ class Calculator implements Parcelable{
         return sb.toString();
     }
 
-    int getBase() {
+    Base getBase() {
         return mBase;
     }
 
@@ -155,7 +147,7 @@ class Calculator implements Parcelable{
      * @return Digit was appended to mInput.
      */
     boolean inputDigit(String digitString) {
-        int digit = Integer.parseInt(digitString, mBase);
+        int digit = Integer.parseInt(digitString, mBase.toInt());
 
         if (mInput == 0) {
             mInput = digit;
@@ -163,12 +155,10 @@ class Calculator implements Parcelable{
 
         else {
             switch (mBase) {
-                case BIN:
-                    return inputInBase(digit, 1);
+                case BIN: case HEX:
+                    return inputInBase(digit, mBase.getDigitSize());
                 case DEC:
                     return inputDecimal(digit);
-                case HEX:
-                    return inputInBase(digit, 4);
             }
         }
 
@@ -220,7 +210,7 @@ class Calculator implements Parcelable{
         return true;
     }
 
-    boolean setBase(int base) {
+    boolean setBase(Base base) {
         if (base == mBase) {
             return false;
         }
@@ -243,14 +233,14 @@ class Calculator implements Parcelable{
     private Calculator(Parcel in) {
         mInput = in.readInt();
         mOperand = in.readInt();
-        mBase = in.readInt();
+        mBase = Base.fromIntBase(in.readInt());
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(mInput);
         dest.writeInt(mOperand);
-        dest.writeInt(mBase);
+        dest.writeInt(mBase.toInt());
     }
 
     @Override
