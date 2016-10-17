@@ -7,8 +7,6 @@ import static com.akseltorgard.devcalc.Base.*;
 
 class Calculator implements Parcelable{
 
-
-
     /**
      * Current calculator input.
      */
@@ -21,7 +19,6 @@ class Calculator implements Parcelable{
 
     /**
      * Base to expect in inputDigit(), and to produce in getInputString().
-     * Should be BIN, DEC or HEX.
      */
     private Base mBase;
 
@@ -123,21 +120,28 @@ class Calculator implements Parcelable{
     }
 
     /**
-     * Produces string that represents mInput in base mBase, formatted if need be.
+     * Returns string that represents mInput in base mBase, formatted if need be.
      * @return String of mInput in mBase.
      */
     String getInputString() {
-        switch (mBase) {
-            case BIN:
-                String binaryString = Integer.toBinaryString(mInput);
-                return formatStringSpacing(binaryString, 8);
-            case DEC:
-                return Integer.toString(mInput);
-            case HEX:
-                String hexString = Integer.toHexString(mInput);
-                return formatStringSpacing(hexString, 2);
-            default:
-                throw new NumberFormatException("Improper base: " + mBase);
+        return intToString(mInput);
+    }
+
+    /**
+     * Returns string that represents mOperand in base mBase, formatted if need be.
+     * @return String of mOperand in mBase.
+     */
+    String getOperandString() {
+        return intToString(mOperand);
+    }
+
+    String getOperatorString() {
+        if (mOperator == null) {
+            return "";
+        }
+
+        else {
+            return mOperator.toString();
         }
     }
 
@@ -210,6 +214,26 @@ class Calculator implements Parcelable{
         return true;
     }
 
+    /**
+     * Converts i to String of number in mBase.
+     * @param i Integer to convert.
+     * @return String of number in mBase.
+     */
+    private String intToString(int i) {
+        switch (mBase) {
+            case BIN:
+                String binaryString = Integer.toBinaryString(i);
+                return formatStringSpacing(binaryString, 8);
+            case DEC:
+                return Integer.toString(i);
+            case HEX:
+                String hexString = Integer.toHexString(i);
+                return formatStringSpacing(hexString, 2);
+            default:
+                throw new NumberFormatException("Improper base: " + mBase);
+        }
+    }
+
     boolean setBase(Base base) {
         if (base == mBase) {
             return false;
@@ -219,9 +243,10 @@ class Calculator implements Parcelable{
         return true;
     }
 
-    void setOperator(Operator operator) {
+    boolean setOperator(Operator operator) {
         mOperator = operator;
         mOperand = mInput;
+        return false;
     }
 
     void toggleBit(int bitIndex) {
@@ -259,6 +284,4 @@ class Calculator implements Parcelable{
             return new Calculator[size];
         }
     };
-
-
 }

@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
      * Display, shows input.
      */
     TextView mInput;
+    TextView mOperand;
+    TextView mOperator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,10 +71,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initDisplay() {
+        InputFilter[] allCapsFilter = new InputFilter[] {new InputFilter.AllCaps()};
+
         mInput = (TextView) findViewById(R.id.text_view_input);
-        mInput.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
+        mInput.setFilters(allCapsFilter);
         mInput.setText(mCalculator.getInputString());
 
+        mOperand = (TextView) findViewById(R.id.text_view_operand);
+        mOperand.setFilters(allCapsFilter);
+
+        mOperator = (TextView) findViewById(R.id.text_view_operator);
+        mOperator.setText(mCalculator.getOperatorString());
 
         View.OnClickListener bitButtonListener = new View.OnClickListener() {
             @Override
@@ -279,11 +288,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void operatorPressed(Operator operator) {
-        Log.d(TAG, "PRESSED: " + operator.name());
+        Log.d(TAG, "PRESSED: " + operator.toString());
 
-        mCalculator.setOperator(operator);
-        TextView operatorTextView = (TextView) findViewById(R.id.text_view_operator);
-        operatorTextView.setText(operator.toString());
+        if (mCalculator.setOperator(operator)) {
+            updateDisplay();
+        }
+
+        mOperator.setText(operator.toString());
+        mOperand.setText(mCalculator.getOperandString());
     }
 
     private void toggleBit(ToggleButton b) {
