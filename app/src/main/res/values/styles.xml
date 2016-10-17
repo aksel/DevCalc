@@ -22,6 +22,7 @@
 
     <style name="ButtonStyle" parent="Widget.AppCompat.Button.Colored">
         <item name="android:gravity">top</item>
+        <item name="android:textSize">10dp</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
