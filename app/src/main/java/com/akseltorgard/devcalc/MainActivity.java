@@ -279,6 +279,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void operatorPressed(Operator operator) {
         Log.d(TAG, "PRESSED: " + operator.name());
+
+        mCalculator.setOperator(operator);
+        TextView operatorTextView = (TextView) findViewById(R.id.text_view_operator);
+        operatorTextView.setText(operator.mSign);
     }
 
     private void toggleBit(ToggleButton b) {
