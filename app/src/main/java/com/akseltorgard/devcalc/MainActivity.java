@@ -282,7 +282,7 @@ public class MainActivity extends AppCompatActivity {
 
         mCalculator.setOperator(operator);
         TextView operatorTextView = (TextView) findViewById(R.id.text_view_operator);
-        operatorTextView.setText(operator.mSign);
+        operatorTextView.setText(operator.toString());
     }
 
     private void toggleBit(ToggleButton b) {

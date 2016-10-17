@@ -14,8 +14,13 @@ enum Operator {
     LEFT_SHIFT("<<"),
     RIGHT_SHIFT(">>");
 
-    String mSign;
+    private String mSign;
     Operator(String sign) {
         mSign = sign;
+    }
+
+    @Override
+    public String toString() {
+        return mSign;
     }
 }
