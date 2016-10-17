@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -66,8 +65,6 @@ public class MainActivity extends AppCompatActivity {
         initBaseButtons();
         initNumberButtons();
         initOperatorButtons();
-
-        updateDisplay();
     }
 
     private void initDisplay() {
@@ -75,11 +72,6 @@ public class MainActivity extends AppCompatActivity {
         mInput.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
         mInput.setText(mCalculator.getInputString());
 
-        LinearLayout[] byteLayouts = new LinearLayout[4];
-        byteLayouts[0] = (LinearLayout) findViewById(R.id.byte_1);
-        byteLayouts[1] = (LinearLayout) findViewById(R.id.byte_2);
-        byteLayouts[2] = (LinearLayout) findViewById(R.id.byte_3);
-        byteLayouts[3] = (LinearLayout) findViewById(R.id.byte_4);
 
         View.OnClickListener bitButtonListener = new View.OnClickListener() {
             @Override
@@ -88,42 +80,39 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+        int[] byteLayoutIds = {
+                R.id.byte_1,
+                R.id.byte_2,
+                R.id.byte_3,
+                R.id.byte_4
+        };
+
+        int[] bitButtonIds = {
+                R.id.bit_1,
+                R.id.bit_2,
+                R.id.bit_3,
+                R.id.bit_4,
+                R.id.bit_5,
+                R.id.bit_6,
+                R.id.bit_7,
+                R.id.bit_8,
+        };
+
+        boolean[] bits = mCalculator.getBits();
+
         bitButtons = new ToggleButton[32];
 
         int bitIndex = 0;
-        for (LinearLayout byteLayout : byteLayouts) {
-            bitButtons[bitIndex] = (ToggleButton) byteLayout.findViewById(R.id.bit_1);
-            bitButtons[bitIndex].setTag(bitIndex);
-            bitButtons[bitIndex++].setOnClickListener(bitButtonListener);
-
-            bitButtons[bitIndex] = (ToggleButton) byteLayout.findViewById(R.id.bit_2);
-            bitButtons[bitIndex].setTag(bitIndex);
-            bitButtons[bitIndex++].setOnClickListener(bitButtonListener);
-
-            bitButtons[bitIndex] = (ToggleButton) byteLayout.findViewById(R.id.bit_3);
-            bitButtons[bitIndex].setTag(bitIndex);
-            bitButtons[bitIndex++].setOnClickListener(bitButtonListener);
-
-            bitButtons[bitIndex] = (ToggleButton) byteLayout.findViewById(R.id.bit_4);
-            bitButtons[bitIndex].setTag(bitIndex);
-            bitButtons[bitIndex++].setOnClickListener(bitButtonListener);
-
-            bitButtons[bitIndex] = (ToggleButton) byteLayout.findViewById(R.id.bit_5);
-            bitButtons[bitIndex].setTag(bitIndex);
-            bitButtons[bitIndex++].setOnClickListener(bitButtonListener);
-
-            bitButtons[bitIndex] = (ToggleButton) byteLayout.findViewById(R.id.bit_6);
-            bitButtons[bitIndex].setTag(bitIndex);
-            bitButtons[bitIndex++].setOnClickListener(bitButtonListener);
-
-            bitButtons[bitIndex] = (ToggleButton) byteLayout.findViewById(R.id.bit_7);
-            bitButtons[bitIndex].setTag(bitIndex);
-            bitButtons[bitIndex++].setOnClickListener(bitButtonListener);
-
-            bitButtons[bitIndex] = (ToggleButton) byteLayout.findViewById(R.id.bit_8);
-            bitButtons[bitIndex].setTag(bitIndex);
-            bitButtons[bitIndex++].setOnClickListener(bitButtonListener);
+        for (int byteLayoutId : byteLayoutIds) {
+            for (int i = 0; i < bitButtonIds.length; i++, bitIndex++) {
+                bitButtons[bitIndex] = (ToggleButton) findViewById(byteLayoutId).findViewById(bitButtonIds[i]);
+                bitButtons[bitIndex].setTag(bitIndex);
+                bitButtons[bitIndex].setChecked(bits[bitIndex]);
+                bitButtons[bitIndex].setOnClickListener(bitButtonListener);
+            }
         }
+
+        updateHexTextViews();
     }
 
     /**
@@ -306,6 +295,10 @@ public class MainActivity extends AppCompatActivity {
             bitButtons[i].setChecked(bits[i]);
         }
 
+        updateHexTextViews();
+    }
+
+    private void updateHexTextViews() {
         String hexString = mCalculator.getHexString();
 
         TextView hex1 = (TextView) findViewById(R.id.byte_1).findViewById(R.id.display_hex);
@@ -325,10 +318,6 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    /**
-     * Put mOperators and mNumbers in Bundle.
-     * @param savedInstanceState Bundle.
-     */
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putParcelable(KEY_CALCULATOR, mCalculator);
