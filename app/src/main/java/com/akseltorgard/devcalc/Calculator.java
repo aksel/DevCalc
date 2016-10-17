@@ -108,16 +108,18 @@ class Calculator implements Parcelable{
      * Returns mInput as hex string, padded with 0's until length == 8.
      * @return mInput as hex string.
      */
-    String getHexString() {
+    String[] getHexStrings() {
 
-        String hexString = Integer.toHexString(mInput).toUpperCase();
+        String[] hexStrings = new String[4];
 
-        while (hexString.length() < 8) {
-            hexString = "0" + hexString;
-        }
+        hexStrings[0] = Integer.toHexString(mInput & 0xff);
+        hexStrings[1] = Integer.toHexString((mInput >> 8) & 0xff);
+        hexStrings[2] = Integer.toHexString((mInput >> 16)& 0xff);
+        hexStrings[3] = Integer.toHexString((mInput >> 24)& 0xff);
 
-        return hexString;
+        return hexStrings;
     }
+
 
     /**
      * Returns string that represents mInput in base mBase, formatted if need be.

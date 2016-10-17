@@ -316,17 +316,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateHexTextViews() {
-        String hexString = mCalculator.getHexString();
+        String[] hexStrings = mCalculator.getHexStrings();
 
         TextView hex1 = (TextView) findViewById(R.id.byte_1).findViewById(R.id.display_hex);
         TextView hex2 = (TextView) findViewById(R.id.byte_2).findViewById(R.id.display_hex);
         TextView hex3 = (TextView) findViewById(R.id.byte_3).findViewById(R.id.display_hex);
         TextView hex4 = (TextView) findViewById(R.id.byte_4).findViewById(R.id.display_hex);
 
-        hex1.setText(hexString.substring(6,8));
-        hex2.setText(hexString.substring(4,6));
-        hex3.setText(hexString.substring(2,4));
-        hex4.setText(hexString.substring(0,2));
+        hex1.setText(hexStrings[0]);
+        hex2.setText(hexStrings[2]);
+        hex3.setText(hexStrings[3]);
+        hex4.setText(hexStrings[4]);
     }
 
     @Override
