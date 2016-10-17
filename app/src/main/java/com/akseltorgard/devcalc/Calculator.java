@@ -112,10 +112,10 @@ class Calculator implements Parcelable{
 
         String[] hexStrings = new String[4];
 
-        hexStrings[0] = Integer.toHexString(mInput & 0xff);
-        hexStrings[1] = Integer.toHexString((mInput >> 8) & 0xff);
-        hexStrings[2] = Integer.toHexString((mInput >> 16)& 0xff);
-        hexStrings[3] = Integer.toHexString((mInput >> 24)& 0xff);
+        hexStrings[0] = String.format("%2s",Integer.toHexString(mInput & 0xff)).replace(" ", "0");
+        hexStrings[1] = String.format("%2s",Integer.toHexString((mInput >> 8) & 0xff)).replace(" ", "0");
+        hexStrings[2] = String.format("%2s",Integer.toHexString((mInput >> 16)& 0xff)).replace(" ", "0");
+        hexStrings[3] = String.format("%2s",Integer.toHexString((mInput >> 24)& 0xff)).replace(" ", "0");
 
         return hexStrings;
     }
