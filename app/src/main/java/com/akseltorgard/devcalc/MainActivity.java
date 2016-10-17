@@ -26,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     Button[] mNumbers;
 
-    ToggleButton[] bitButtons;
+    TextView[] mHexTextViews;
+    ToggleButton[] mBitButtons;
 
     /**
      * Display, shows input.
@@ -68,33 +69,42 @@ public class MainActivity extends AppCompatActivity {
         initBaseButtons();
         initNumberButtons();
         initOperatorButtons();
+
+        updateInputArea();
+        updateBitButtons();
+        updateHexTextViews();
     }
 
     private void initDisplay() {
-        InputFilter[] allCapsFilter = new InputFilter[] {new InputFilter.AllCaps()};
+        InputFilter[] allCapsFilters = new InputFilter[] {new InputFilter.AllCaps()};
 
         mInput = (TextView) findViewById(R.id.text_view_input);
-        mInput.setFilters(allCapsFilter);
-        mInput.setText(mCalculator.getInputString());
+        mInput.setFilters(allCapsFilters);
 
         mOperand = (TextView) findViewById(R.id.text_view_operand);
-        mOperand.setFilters(allCapsFilter);
+        mOperand.setFilters(allCapsFilters);
 
         mOperator = (TextView) findViewById(R.id.text_view_operator);
-        mOperator.setText(mCalculator.getOperatorString());
-
-        View.OnClickListener bitButtonListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toggleBit((ToggleButton) v);
-            }
-        };
 
         int[] byteLayoutIds = {
                 R.id.byte_1,
                 R.id.byte_2,
                 R.id.byte_3,
                 R.id.byte_4
+        };
+
+        mHexTextViews = new TextView[byteLayoutIds.length];
+
+        for (int i = 0; i < byteLayoutIds.length; i++) {
+            mHexTextViews[i] = (TextView) findViewById(byteLayoutIds[i]).findViewById(R.id.display_hex);
+            mHexTextViews[i].setFilters(allCapsFilters);
+        }
+
+        View.OnClickListener bitButtonListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleBit((ToggleButton) v);
+            }
         };
 
         int[] bitButtonIds = {
@@ -108,21 +118,17 @@ public class MainActivity extends AppCompatActivity {
                 R.id.bit_8,
         };
 
-        boolean[] bits = mCalculator.getBits();
-
-        bitButtons = new ToggleButton[32];
+        mBitButtons = new ToggleButton[bitButtonIds.length * byteLayoutIds.length];
 
         int bitIndex = 0;
         for (int byteLayoutId : byteLayoutIds) {
             for (int i = 0; i < bitButtonIds.length; i++, bitIndex++) {
-                bitButtons[bitIndex] = (ToggleButton) findViewById(byteLayoutId).findViewById(bitButtonIds[i]);
-                bitButtons[bitIndex].setTag(bitIndex);
-                bitButtons[bitIndex].setChecked(bits[bitIndex]);
-                bitButtons[bitIndex].setOnClickListener(bitButtonListener);
+                ToggleButton bitButton = (ToggleButton) findViewById(byteLayoutId).findViewById(bitButtonIds[i]);
+                bitButton.setTag(bitIndex);
+                bitButton.setOnClickListener(bitButtonListener);
+                mBitButtons[bitIndex] = bitButton;
             }
         }
-
-        updateHexTextViews();
     }
 
     /**
@@ -241,13 +247,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void backspace() {
         if (mCalculator.backspace()) {
-            updateDisplay();
+            updateInputArea();
+            updateBitButtons();
+            updateHexTextViews();
         }
     }
 
     private void clear() {
         if (mCalculator.clear()) {
-            updateDisplay();
+            updateInputArea();
+            updateBitButtons();
+            updateHexTextViews();
         }
     }
 
@@ -258,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
     private void changeBase(Base base) {
         if (mCalculator.setBase(base)) {
             enableButtonsInRange(base);
-            mInput.setText(mCalculator.getInputString());
+            updateInputArea();
         }
     }
 
@@ -278,7 +288,9 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "PRESSED:" + number);
 
         if (mCalculator.inputDigit(number)) {
-            updateDisplay();
+            updateInputArea();
+            updateBitButtons();
+            updateHexTextViews();
         }
 
         else {
@@ -291,42 +303,44 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "PRESSED: " + operator.toString());
 
         if (mCalculator.setOperator(operator)) {
-            updateDisplay();
+            updateInputArea();
+            updateBitButtons();
+            updateHexTextViews();
         }
 
-        mOperator.setText(operator.toString());
-        mOperand.setText(mCalculator.getOperandString());
+        else {
+            updateInputArea();
+        }
     }
 
     private void toggleBit(ToggleButton b) {
         mCalculator.toggleBit((int)b.getTag());
-        updateDisplay();
+        updateInputArea();
+        updateHexTextViews();
     }
 
-    private void updateDisplay() {
+    /**
+     * Updates mInput, mOperator and mOperand.
+     */
+    private void updateInputArea() {
         mInput.setText(mCalculator.getInputString());
+        mOperator.setText(mCalculator.getOperatorString());
+        mOperand.setText(mCalculator.getOperandString());
+    }
 
+    private void updateBitButtons() {
         boolean[] bits = mCalculator.getBits();
-
         for (int i = 0; i < 32; i++) {
-            bitButtons[i].setChecked(bits[i]);
+            mBitButtons[i].setChecked(bits[i]);
         }
-
-        updateHexTextViews();
     }
 
     private void updateHexTextViews() {
         String[] hexStrings = mCalculator.getHexStrings();
 
-        TextView hex1 = (TextView) findViewById(R.id.byte_1).findViewById(R.id.display_hex);
-        TextView hex2 = (TextView) findViewById(R.id.byte_2).findViewById(R.id.display_hex);
-        TextView hex3 = (TextView) findViewById(R.id.byte_3).findViewById(R.id.display_hex);
-        TextView hex4 = (TextView) findViewById(R.id.byte_4).findViewById(R.id.display_hex);
-
-        hex1.setText(hexStrings[0]);
-        hex2.setText(hexStrings[2]);
-        hex3.setText(hexStrings[3]);
-        hex4.setText(hexStrings[4]);
+        for (int i = 0; i < 4; i++) {
+            mHexTextViews[i].setText(hexStrings[i]);
+        }
     }
 
     @Override

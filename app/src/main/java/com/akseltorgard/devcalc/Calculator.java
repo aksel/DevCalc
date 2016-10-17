@@ -134,6 +134,9 @@ class Calculator implements Parcelable{
      * @return String of mOperand in mBase.
      */
     String getOperandString() {
+        if (mOperator == null) {
+            return "";
+        }
         return intToString(mOperand);
     }
 
@@ -141,10 +144,7 @@ class Calculator implements Parcelable{
         if (mOperator == null) {
             return "";
         }
-
-        else {
-            return mOperator.toString();
-        }
+        return mOperator.toString();
     }
 
     /**
