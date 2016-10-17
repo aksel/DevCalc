@@ -1,7 +1,21 @@
 package com.akseltorgard.devcalc;
 
-public enum Operator {
-    ADD, SUBTRACT, MULTIPLY, DIVIDE,
-    INCREMENT, DECREMENT,
-    OR, XOR, AND, NOT, LEFT_SHIFT, RIGHT_SHIFT;
+enum Operator {
+    ADD("+"),
+    SUBTRACT("-"),
+    MULTIPLY("*"),
+    DIVIDE("/"),
+    INCREMENT("++"),
+    DECREMENT("--"),
+    OR("OR"),
+    XOR("XOR"),
+    AND("AND"),
+    NOT("NOT"),
+    LEFT_SHIFT("<<"),
+    RIGHT_SHIFT(">>");
+
+    String mSign;
+    Operator(String sign) {
+        mSign = sign;
+    }
 }
