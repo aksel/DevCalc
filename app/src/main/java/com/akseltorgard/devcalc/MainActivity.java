@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
      * Display, shows input.
      */
     TextView mInput;
-    TextView mOperand;
-    TextView mOperator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,11 +78,6 @@ public class MainActivity extends AppCompatActivity {
 
         mInput = (TextView) findViewById(R.id.text_view_input);
         mInput.setFilters(allCapsFilters);
-
-        mOperand = (TextView) findViewById(R.id.text_view_operand);
-        mOperand.setFilters(allCapsFilters);
-
-        mOperator = (TextView) findViewById(R.id.text_view_operator);
 
         int[] byteLayoutIds = {
                 R.id.byte_1,
@@ -320,12 +313,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Updates mInput, mOperator and mOperand.
+     * Updates mInput.
      */
     private void updateInputArea() {
         mInput.setText(mCalculator.getInputString());
-        mOperator.setText(mCalculator.getOperatorString());
-        mOperand.setText(mCalculator.getOperandString());
     }
 
     private void updateBitButtons() {
