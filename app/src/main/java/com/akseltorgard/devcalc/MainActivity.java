@@ -24,15 +24,14 @@ public class MainActivity extends AppCompatActivity {
 
     Calculator mCalculator;
 
-    Button[] mNumbers;
-
+    //DISPLAY MEMBERS
     TextView[] mHexTextViews;
     ToggleButton[] mBitButtons;
-
-    /**
-     * Display, shows input.
-     */
     TextView mInput;
+    TextView mOperation;
+    //END DISPLAY MEMBERS
+
+    Button[] mNumbers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void initDisplay() {
         InputFilter[] allCapsFilters = new InputFilter[] {new InputFilter.AllCaps()};
+
+        mOperation = (TextView) findViewById(R.id.text_view_operation);
+        mOperation.setFilters(allCapsFilters);
 
         mInput = (TextView) findViewById(R.id.text_view_input);
         mInput.setFilters(allCapsFilters);

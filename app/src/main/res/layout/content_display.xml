@@ -63,10 +63,18 @@
         <include layout="@layout/display_base_selector"/>
 
         <TextView
+            android:id="@+id/text_view_operation"
+            android:typeface="monospace"
+            android:textSize="14dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end|bottom"
+            tools:text="11111111 11111111 11111111 11111111\nXOR"/>
+
+        <TextView
             android:id="@+id/text_view_input"
             android:typeface="monospace"
             android:textSize="14dp"
-            android:paddingRight="34dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="end|bottom"
