@@ -2,6 +2,7 @@ package com.akseltorgard.devcalc;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.widget.Toast;
 
 import static com.akseltorgard.devcalc.Base.*;
 
@@ -66,6 +67,9 @@ class Calculator implements Parcelable{
                 mOperand *= mInput;
                 break;
             case DIVIDE:
+                if (mInput == 0) {
+                    return;
+                }
                 mOperand /= mInput;
                 break;
             case OR:

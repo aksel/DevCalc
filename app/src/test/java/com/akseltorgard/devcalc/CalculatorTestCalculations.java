@@ -5,6 +5,7 @@ import org.junit.Test;
 import static com.akseltorgard.devcalc.Base.HEX;
 import static org.junit.Assert.assertEquals;
 import static com.akseltorgard.devcalc.Operators.BinaryOperator.*;
+import static com.akseltorgard.devcalc.Operators.UnaryOperator.*;
 
 public class CalculatorTestCalculations {
 
@@ -23,6 +24,90 @@ public class CalculatorTestCalculations {
         calculator.calculateBinaryOperation();
 
         assertEquals("4", calculator.getInputString());
+
+        calculator.clear();
+
+        calculator.calculateUnaryOperation(NOT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+
+        calculator.setOperator(ADD);
+
+        calculator.inputDigit("1");
+        calculator.inputDigit("0");
+
+        calculator.calculateBinaryOperation();
+
+        assertEquals("5", calculator.getInputString());
+    }
+
+    @Test
+    public void testAddPositiveToNegative() {
+        Calculator calculator = new Calculator();
+
+        //Set input to -5
+        calculator.calculateUnaryOperation(NOT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+
+        calculator.setOperator(ADD);
+
+        calculator.inputDigit("1");
+        calculator.inputDigit("0");
+
+        calculator.calculateBinaryOperation();
+
+        assertEquals("5", calculator.getInputString());
+    }
+
+    @Test
+    public void testAddNegativeToPositive() {
+        Calculator calculator = new Calculator();
+
+        calculator.inputDigit("1");
+        calculator.inputDigit("0");
+
+        calculator.setOperator(ADD);
+
+        //Set input to -5
+        calculator.calculateUnaryOperation(NOT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+
+        calculator.calculateBinaryOperation();
+
+        assertEquals("5", calculator.getInputString());
+    }
+
+    @Test
+    public void testAddNegativeToNegative() {
+        Calculator calculator = new Calculator();
+
+        //Set input to -5
+        calculator.calculateUnaryOperation(NOT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+
+        calculator.setOperator(ADD);
+
+        //Set input to -5
+        calculator.calculateUnaryOperation(NOT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+
+        calculator.calculateBinaryOperation();
+
+        assertEquals("-10", calculator.getInputString());
     }
 
     @Test
@@ -38,6 +123,73 @@ public class CalculatorTestCalculations {
         calculator.calculateBinaryOperation();
 
         assertEquals("-2", calculator.getInputString());
+    }
+
+    @Test
+    public void testSubtractPositiveFromNegative() {
+        Calculator calculator = new Calculator();
+
+        //Set input to -5
+        calculator.calculateUnaryOperation(NOT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+
+        calculator.setOperator(SUBTRACT);
+
+        calculator.inputDigit("1");
+        calculator.inputDigit("0");
+
+        calculator.calculateBinaryOperation();
+
+        assertEquals("-15", calculator.getInputString());
+    }
+
+    @Test
+    public void testSubtractNegativeFromPositive() {
+        Calculator calculator = new Calculator();
+
+        calculator.inputDigit("1");
+        calculator.inputDigit("0");
+
+        calculator.setOperator(SUBTRACT);
+
+        //Set input to -5
+        calculator.calculateUnaryOperation(NOT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+
+        calculator.calculateBinaryOperation();
+
+        assertEquals("15", calculator.getInputString());
+    }
+
+    @Test
+    public void testSubtractNegativeFromNegative() {
+        Calculator calculator = new Calculator();
+
+        //Set input to -5
+        calculator.calculateUnaryOperation(NOT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+
+        calculator.setOperator(SUBTRACT);
+
+        //Set input to -5
+        calculator.calculateUnaryOperation(NOT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+
+        calculator.calculateBinaryOperation();
+
+        assertEquals("0", calculator.getInputString());
     }
 
     @Test
@@ -97,6 +249,68 @@ public class CalculatorTestCalculations {
     }
 
     @Test
+    public void testMultiplyNegative() {
+        Calculator calculator = new Calculator();
+
+        //Set input to -5
+        calculator.calculateUnaryOperation(NOT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+
+        calculator.setOperator(MULTIPLY);
+
+        //Set input to -5
+        calculator.calculateUnaryOperation(NOT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+
+        calculator.calculateBinaryOperation();
+
+        assertEquals("25", calculator.getInputString());
+    }
+
+    @Test
+    public void testMultiplyPositiveAndNegative() {
+        Calculator calculator = new Calculator();
+
+        //Set input to -5
+        calculator.calculateUnaryOperation(NOT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+
+        calculator.setOperator(MULTIPLY);
+
+        calculator.inputDigit("5");
+
+        calculator.calculateBinaryOperation();
+
+        assertEquals("-25", calculator.getInputString());
+
+        calculator.clear();
+
+        calculator.inputDigit("5");
+
+        calculator.setOperator(MULTIPLY);
+
+        //Set input to -5
+        calculator.calculateUnaryOperation(NOT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+
+        calculator.calculateBinaryOperation();
+
+        assertEquals("-25", calculator.getInputString());
+    }
+
+    @Test
     public void testDivide() {
         Calculator calculator = new Calculator();
 
@@ -113,6 +327,84 @@ public class CalculatorTestCalculations {
         calculator.setOperator(DIVIDE);
 
         calculator.inputDigit("8");
+
+        calculator.calculateBinaryOperation();
+
+        assertEquals("0", calculator.getInputString());
+    }
+
+    @Test
+    public void testDividePositiveWithNegative() {
+        Calculator calculator = new Calculator();
+
+        calculator.inputDigit("5");
+
+        calculator.setOperator(DIVIDE);
+
+        //Set input to -5
+        calculator.calculateUnaryOperation(NOT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+
+        calculator.calculateBinaryOperation();
+
+        assertEquals("-1", calculator.getInputString());
+    }
+
+    @Test
+    public void testDivideNegativeWithPositive() {
+        Calculator calculator = new Calculator();
+
+        //Set input to -5
+        calculator.calculateUnaryOperation(NOT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+
+        calculator.setOperator(DIVIDE);
+
+        calculator.inputDigit("5");
+
+        calculator.calculateBinaryOperation();
+
+        assertEquals("-1", calculator.getInputString());
+    }
+
+    @Test
+    public void testDivideNegativeWithNegative() {
+        Calculator calculator = new Calculator();
+
+        //Set input to -5
+        calculator.calculateUnaryOperation(NOT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+
+        calculator.setOperator(DIVIDE);
+
+        //Set input to -5
+        calculator.calculateUnaryOperation(NOT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+        calculator.calculateUnaryOperation(DECREMENT);
+
+        calculator.calculateBinaryOperation();
+
+        assertEquals("1", calculator.getInputString());
+    }
+
+    @Test
+    public void testDivideZero() {
+        Calculator calculator = new Calculator();
+
+        calculator.inputDigit("1");
+
+        calculator.setOperator(DIVIDE);
 
         calculator.calculateBinaryOperation();
 
