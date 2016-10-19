@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static com.akseltorgard.devcalc.Base.HEX;
 import static org.junit.Assert.assertEquals;
-import static com.akseltorgard.devcalc.Operator.*;
+import static com.akseltorgard.devcalc.Operators.BinaryOperator.*;
 
 public class CalculatorTestCalculations {
 
@@ -20,7 +20,7 @@ public class CalculatorTestCalculations {
 
         calculator.inputDigit("2");
 
-        calculator.calculate();
+        calculator.calculateBinaryOperation();
 
         assertEquals("4", calculator.getInputString());
     }
@@ -35,7 +35,7 @@ public class CalculatorTestCalculations {
 
         calculator.inputDigit("4");
 
-        calculator.calculate();
+        calculator.calculateBinaryOperation();
 
         assertEquals("-2", calculator.getInputString());
     }
@@ -58,7 +58,7 @@ public class CalculatorTestCalculations {
 
         calculator.inputDigit("2");
 
-        calculator.calculate();
+        calculator.calculateBinaryOperation();
 
         assertEquals("", calculator.getCalculationString());
         assertEquals("20", calculator.getInputString());
@@ -83,7 +83,7 @@ public class CalculatorTestCalculations {
 
         calculator.inputDigit("8");
 
-        calculator.calculate();
+        calculator.calculateBinaryOperation();
 
         assertEquals("16", calculator.getInputString());
 
@@ -91,7 +91,7 @@ public class CalculatorTestCalculations {
 
         calculator.inputDigit("0");
 
-        calculator.calculate();
+        calculator.calculateBinaryOperation();
 
         assertEquals("0", calculator.getInputString());
     }
@@ -106,7 +106,7 @@ public class CalculatorTestCalculations {
 
         calculator.inputDigit("2");
 
-        calculator.calculate();
+        calculator.calculateBinaryOperation();
 
         assertEquals("4", calculator.getInputString());
 
@@ -114,7 +114,7 @@ public class CalculatorTestCalculations {
 
         calculator.inputDigit("8");
 
-        calculator.calculate();
+        calculator.calculateBinaryOperation();
 
         assertEquals("0", calculator.getInputString());
     }
@@ -136,7 +136,7 @@ public class CalculatorTestCalculations {
         calculator.inputDigit("0");
         calculator.inputDigit("0");
 
-        calculator.calculate();
+        calculator.calculateBinaryOperation();
 
         assertEquals("aa 5a ff", calculator.getInputString());
 
@@ -147,7 +147,7 @@ public class CalculatorTestCalculations {
         calculator.inputDigit("5");
         calculator.inputDigit("1");
         calculator.inputDigit("1");
-        calculator.calculate();
+        calculator.calculateBinaryOperation();
 
         assertEquals("ff ff ff", calculator.getInputString());
     }
@@ -167,7 +167,7 @@ public class CalculatorTestCalculations {
         calculator.inputDigit("C");
         calculator.inputDigit("3");
 
-        calculator.calculate();
+        calculator.calculateBinaryOperation();
 
         assertEquals("ff 3c", calculator.getInputString());
 
@@ -177,7 +177,7 @@ public class CalculatorTestCalculations {
         calculator.inputDigit("0");
         calculator.inputDigit("0");
 
-        calculator.calculate();
+        calculator.calculateBinaryOperation();
 
         assertEquals("f0 3c", calculator.getInputString());
     }
@@ -195,7 +195,7 @@ public class CalculatorTestCalculations {
         calculator.inputDigit("C");
         calculator.inputDigit("3");
 
-        calculator.calculate();
+        calculator.calculateBinaryOperation();
 
         assertEquals("c3", calculator.getInputString());
 
@@ -203,7 +203,7 @@ public class CalculatorTestCalculations {
 
         calculator.inputDigit("2");
 
-        calculator.calculate();
+        calculator.calculateBinaryOperation();
 
         assertEquals("2", calculator.getInputString());
     }

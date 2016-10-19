@@ -8,7 +8,7 @@ import static com.akseltorgard.devcalc.Base.*;
 class Calculator implements Parcelable{
 
     private Integer mOperand;
-    private Operator mOperator;
+    private Operators.BinaryOperator mOperator;
 
     /**
      * Current calculator input.
@@ -46,7 +46,7 @@ class Calculator implements Parcelable{
         return true;
     }
 
-    void calculate() {
+    void calculateBinaryOperation() {
         if (mOperand == null || mOperator == null) {
             return;
         }
@@ -85,6 +85,30 @@ class Calculator implements Parcelable{
 
         mOperand = null;
         mOperator = null;
+    }
+
+    void calculateUnaryOperation(Operators.UnaryOperator operator) {
+        if (mInput == null) {
+            mInput = 0;
+        }
+
+        switch (operator) {
+            case INCREMENT:
+                mInput++;
+                break;
+            case DECREMENT:
+                mInput--;
+                break;
+            case NOT:
+                mInput = ~mInput;
+                break;
+            case LEFT_SHIFT:
+                mInput <<= 1;
+                break;
+            case RIGHT_SHIFT:
+                mInput >>>= 1;
+                break;
+        }
     }
 
     /**
@@ -242,7 +266,7 @@ class Calculator implements Parcelable{
         return true;
     }
 
-    void setOperator(Operator operator) {
+    void setOperator(Operators.BinaryOperator operator) {
         if (mOperator == null) {
             mOperator = operator;
             mOperand = mInput;
@@ -255,7 +279,7 @@ class Calculator implements Parcelable{
         }
 
         else {
-            calculate();
+            calculateBinaryOperation();
             setOperator(operator);
         }
     }
@@ -276,7 +300,7 @@ class Calculator implements Parcelable{
 
         if (in.dataAvail() > 0) {
             mOperand = in.readInt();
-            mOperator = Operator.fromStringSign(in.readString());
+            mOperator = Operators.BinaryOperator.fromStringSign(in.readString());
         }
     }
 

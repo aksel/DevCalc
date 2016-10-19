@@ -13,7 +13,8 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import static com.akseltorgard.devcalc.Base.*;
-import static com.akseltorgard.devcalc.Operator.*;
+import static com.akseltorgard.devcalc.Operators.BinaryOperator.*;
+import static com.akseltorgard.devcalc.Operators.UnaryOperator.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -169,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Finds all number buttons, sets onClickListener -> numberPressed(numberButton).
+     * Finds all number buttons, sets onClickListener -> pressedNumber(numberButton).
      * Calls enableButtonsInRange(base), enabling and disabling buttons based on whether they
      * are in range or not.
      */
@@ -178,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Button b = (Button) v;
-                numberPressed(b.getText().toString());
+                pressedNumber(b.getText().toString());
             }
         };
 
@@ -215,7 +216,34 @@ public class MainActivity extends AppCompatActivity {
 
         //UNARY OPERATIONS
         {
-            //TODO: Add listeners for unary operators, i.e. increment, decrement, not and shifts
+            int[] buttonIds = {
+                    R.id.button_increment,
+                    R.id.button_decrement,
+                    R.id.button_not,
+                    R.id.button_left_shift,
+                    R.id.button_right_shift
+            };
+
+            Operators.UnaryOperator[] unaryOperators = {
+                    INCREMENT,
+                    DECREMENT,
+                    NOT,
+                    LEFT_SHIFT,
+                    RIGHT_SHIFT
+            };
+
+            View.OnClickListener unaryOperatorListener = new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    pressedUnaryOperator((Operators.UnaryOperator) v.getTag());
+                }
+            };
+
+            for (int i = 0; i < buttonIds.length; i++) {
+                Button b = (Button) findViewById(buttonIds[i]);
+                b.setTag(unaryOperators[i]);
+                b.setOnClickListener(unaryOperatorListener);
+            }
         }
 
         //BINARY OPERATIONS
@@ -230,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
                     R.id.button_and
             };
 
-            Operator[] operators = {
+            Operators.BinaryOperator[] binaryOperators = {
                     ADD,
                     SUBTRACT,
                     MULTIPLY,
@@ -240,17 +268,17 @@ public class MainActivity extends AppCompatActivity {
                     AND
             };
 
-            View.OnClickListener binaryOperationListener = new View.OnClickListener() {
+            View.OnClickListener binaryOperatorListener = new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    binaryOperation((Operator) v.getTag());
+                    pressedBinaryOperator((Operators.BinaryOperator) v.getTag());
                 }
             };
 
             for (int i = 0; i < buttonIds.length; i++) {
                 Button b = (Button) findViewById(buttonIds[i]);
-                b.setTag(operators[i]);
-                b.setOnClickListener(binaryOperationListener);
+                b.setTag(binaryOperators[i]);
+                b.setOnClickListener(binaryOperatorListener);
             }
         }
 
@@ -258,7 +286,7 @@ public class MainActivity extends AppCompatActivity {
         equalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCalculator.calculate();
+                mCalculator.calculateBinaryOperation();
                 updateDisplay();
             }
         });
@@ -306,7 +334,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void numberPressed(String number) {
+    private void pressedBinaryOperator(Operators.BinaryOperator binaryOperator) {
+        Log.d(TAG, "PRESSED: " + binaryOperator.toString());
+
+        mCalculator.setOperator(binaryOperator);
+        updateDisplay();
+    }
+
+    private void pressedNumber(String number) {
         Log.d(TAG, "PRESSED:" + number);
 
         if (mCalculator.inputDigit(number)) {
@@ -319,10 +354,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void binaryOperation(Operator operator) {
-        Log.d(TAG, "PRESSED: " + operator.toString());
+    private void pressedUnaryOperator(Operators.UnaryOperator unaryOperator) {
+        Log.d(TAG, "PRESSED: " + unaryOperator.toString());
 
-        mCalculator.setOperator(operator);
+        mCalculator.calculateUnaryOperation(unaryOperator);
         updateDisplay();
     }
 
@@ -338,14 +373,6 @@ public class MainActivity extends AppCompatActivity {
         updateHexTextViews();
     }
 
-    /**
-     * Updates mInput.
-     */
-    private void updateInputArea() {
-        mInput.setText(mCalculator.getInputString());
-        mOperation.setText(mCalculator.getCalculationString());
-    }
-
     private void updateBitButtons() {
         boolean[] bits = mCalculator.getBits();
         for (int i = 0; i < 32; i++) {
@@ -359,6 +386,11 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < 4; i++) {
             mHexTextViews[i].setText(hexStrings[i]);
         }
+    }
+
+    private void updateInputArea() {
+        mInput.setText(mCalculator.getInputString());
+        mOperation.setText(mCalculator.getCalculationString());
     }
 
     @Override
