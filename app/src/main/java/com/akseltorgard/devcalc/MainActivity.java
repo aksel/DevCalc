@@ -67,9 +67,7 @@ public class MainActivity extends AppCompatActivity {
         initNumberButtons();
         initOperatorButtons();
 
-        updateInputArea();
-        updateBitButtons();
-        updateHexTextViews();
+        updateDisplay();
     }
 
     private void initDisplay() {
@@ -212,42 +210,56 @@ public class MainActivity extends AppCompatActivity {
      */
     private void initOperatorButtons() {
 
-        final HashMap<Button, Operator> operators = new HashMap<>();
+        //UNARY OPERATIONS
+        {
+            //TODO: Add listeners for unary operators, i.e. increment, decrement, not and shifts
+        }
 
-        operators.put((Button) findViewById(R.id.button_add),         ADD);
-        operators.put((Button) findViewById(R.id.button_subtract),    SUBTRACT);
-        operators.put((Button) findViewById(R.id.button_multiply),    MULTIPLY);
-        operators.put((Button) findViewById(R.id.button_divide),      DIVIDE);
-        operators.put((Button) findViewById(R.id.button_or),          OR);
-        operators.put((Button) findViewById(R.id.button_xor),         XOR);
-        operators.put((Button) findViewById(R.id.button_and),         AND);
+        //BINARY OPERATIONS
+        {
+            final HashMap<Button, Operator> binaryOperations = new HashMap<>();
 
-        View.OnClickListener operatorListener = new View.OnClickListener() {
+            binaryOperations.put((Button) findViewById(R.id.button_add), ADD);
+            binaryOperations.put((Button) findViewById(R.id.button_subtract), SUBTRACT);
+            binaryOperations.put((Button) findViewById(R.id.button_multiply), MULTIPLY);
+            binaryOperations.put((Button) findViewById(R.id.button_divide), DIVIDE);
+            binaryOperations.put((Button) findViewById(R.id.button_or), OR);
+            binaryOperations.put((Button) findViewById(R.id.button_xor), XOR);
+            binaryOperations.put((Button) findViewById(R.id.button_and), AND);
+
+            View.OnClickListener binaryOperationListener = new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Button b = (Button) v;
+                    binaryOperation(binaryOperations.get(b));
+                }
+            };
+
+            for (Button b : binaryOperations.keySet()) {
+                b.setOnClickListener(binaryOperationListener);
+            }
+        }
+
+        Button equalButton = (Button) findViewById(R.id.button_equals);
+        equalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Button b = (Button) v;
-                operatorPressed(operators.get(b));
+                mCalculator.calculate();
+                updateDisplay();
             }
-        };
+        });
 
-        for (Button b : operators.keySet()) {
-            b.setOnClickListener(operatorListener);
-        }
     }
 
     private void backspace() {
         if (mCalculator.backspace()) {
-            updateInputArea();
-            updateBitButtons();
-            updateHexTextViews();
+            updateDisplay();
         }
     }
 
     private void clear() {
         if (mCalculator.clear()) {
-            updateInputArea();
-            updateBitButtons();
-            updateHexTextViews();
+            updateDisplay();
         }
     }
 
@@ -278,9 +290,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "PRESSED:" + number);
 
         if (mCalculator.inputDigit(number)) {
-            updateInputArea();
-            updateBitButtons();
-            updateHexTextViews();
+            updateDisplay();
         }
 
         else {
@@ -289,18 +299,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void operatorPressed(Operator operator) {
+    private void binaryOperation(Operator operator) {
         Log.d(TAG, "PRESSED: " + operator.toString());
 
-        if (mCalculator.setOperator(operator)) {
-            updateInputArea();
-            updateBitButtons();
-            updateHexTextViews();
-        }
-
-        else {
-            updateInputArea();
-        }
+        mCalculator.setOperator(operator);
+        updateDisplay();
     }
 
     private void toggleBit(ToggleButton b) {
@@ -309,11 +312,18 @@ public class MainActivity extends AppCompatActivity {
         updateHexTextViews();
     }
 
+    private void updateDisplay() {
+        updateInputArea();
+        updateBitButtons();
+        updateHexTextViews();
+    }
+
     /**
      * Updates mInput.
      */
     private void updateInputArea() {
         mInput.setText(mCalculator.getInputString());
+        mOperation.setText(mCalculator.getCalculationString());
     }
 
     private void updateBitButtons() {

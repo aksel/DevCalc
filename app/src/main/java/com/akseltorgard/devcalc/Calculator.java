@@ -47,6 +47,10 @@ class Calculator implements Parcelable{
     }
 
     void calculate() {
+        if (mInput == null) {
+            mInput = 0;
+        }
+
         mBinaryOperation.setOperandB(mInput);
         mInput = mBinaryOperation.calculate();
     }
@@ -78,6 +82,10 @@ class Calculator implements Parcelable{
     boolean[] getBits() {
         boolean[] bits = new boolean[32];
 
+        if (mInput == null || mInput == 0) {
+            return bits;
+        }
+
         int bitIndex = 0;
 
         int val = mInput;
@@ -91,7 +99,7 @@ class Calculator implements Parcelable{
     }
 
     String getCalculationString() {
-        return mBinaryOperation.toString();
+        return mBinaryOperation.toString(mBase);
     }
 
     String[] getHexStrings() {
@@ -185,31 +193,28 @@ class Calculator implements Parcelable{
         return true;
     }
 
-    /**
-     * Sets operator. Returns whether display needs to be updated.
-     * @param operator Operator.
-     * @return Display needs to be updated.
-     */
-    boolean setOperator(Operator operator) {
+    void setOperator(Operator operator) {
         if (!mBinaryOperation.hasOperator()) {
             mBinaryOperation.setOperator(operator);
             mBinaryOperation.setOperandA(mInput);
             mInput = null;
-            return true;
         }
 
         else if (mInput == null) {
             mBinaryOperation.setOperator(operator);
-            return false;
         }
 
         else {
             calculate();
-            return setOperator(operator);
+            setOperator(operator);
         }
     }
 
     void toggleBit(int bitIndex) {
+        if (mInput == null) {
+            mInput = 0;
+        }
+
         mInput ^= (1 << bitIndex);
     }
 
@@ -222,7 +227,7 @@ class Calculator implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(mInput);
+        dest.writeInt(mInput != null ? mInput:0);
         dest.writeInt(mBase.toInt());
     }
 

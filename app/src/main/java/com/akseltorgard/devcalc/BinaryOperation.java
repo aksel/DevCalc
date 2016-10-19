@@ -59,10 +59,9 @@ class BinaryOperation {
         return mOperator != null;
     }
 
-    @Override
-    public String toString() {
+    String toString(Base base) {
         if (mOperandA != null && mOperator != null) {
-            return mOperandA + "\n" + mOperator;
+            return NumberStringUtils.intToString(mOperandA, base) + "\n" + mOperator;
         }
 
         return "";
