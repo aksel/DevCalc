@@ -7,7 +7,8 @@ import static com.akseltorgard.devcalc.Base.*;
 
 class Calculator implements Parcelable{
 
-    private BinaryOperation mBinaryOperation;
+    private Integer mOperand;
+    private Operator mOperator;
 
     /**
      * Current calculator input.
@@ -20,7 +21,6 @@ class Calculator implements Parcelable{
     private Base mBase;
 
     Calculator() {
-        mBinaryOperation = new BinaryOperation();
         mInput = 0;
         mBase = DEC;
     }
@@ -47,12 +47,44 @@ class Calculator implements Parcelable{
     }
 
     void calculate() {
+        if (mOperand == null || mOperator == null) {
+            return;
+        }
+
         if (mInput == null) {
             mInput = 0;
         }
 
-        mBinaryOperation.setOperandB(mInput);
-        mInput = mBinaryOperation.calculate();
+        int result = 0;
+
+        switch (mOperator) {
+            case ADD:
+                result = mOperand + mInput;
+                break;
+            case SUBTRACT:
+                result = mOperand - mInput;
+                break;
+            case MULTIPLY:
+                result = mOperand * mInput;
+                break;
+            case DIVIDE:
+                result = mOperand / mInput;
+                break;
+            case OR:
+                result = mOperand | mInput;
+                break;
+            case XOR:
+                result = mOperand ^ mInput;
+                break;
+            case AND:
+                result = mOperand & mInput;
+                break;
+        }
+
+        mInput = result;
+
+        mOperand = null;
+        mOperator = null;
     }
 
     /**
@@ -99,7 +131,11 @@ class Calculator implements Parcelable{
     }
 
     String getCalculationString() {
-        return mBinaryOperation.toString(mBase);
+        if (mOperand != null && mOperator != null) {
+            return NumberStringUtils.intToString(mOperand, mBase) + "\n" + mOperator;
+        }
+
+        return "";
     }
 
     String[] getHexStrings() {
@@ -194,14 +230,15 @@ class Calculator implements Parcelable{
     }
 
     void setOperator(Operator operator) {
-        if (!mBinaryOperation.hasOperator()) {
-            mBinaryOperation.setOperator(operator);
-            mBinaryOperation.setOperandA(mInput);
+        if (mOperator == null) {
+            mOperator = operator;
+            mOperand = mInput;
             mInput = null;
         }
 
+        //Operator pressed before any digit has been input
         else if (mInput == null) {
-            mBinaryOperation.setOperator(operator);
+            mOperator = operator;
         }
 
         else {
@@ -223,12 +260,22 @@ class Calculator implements Parcelable{
     private Calculator(Parcel in) {
         mInput = in.readInt();
         mBase = Base.fromIntBase(in.readInt());
+
+        if (in.dataAvail() > 0) {
+            mOperand = in.readInt();
+            mOperator = Operator.fromStringSign(in.readString());
+        }
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(mInput != null ? mInput:0);
         dest.writeInt(mBase.toInt());
+
+        if (mOperand != null) {
+            dest.writeInt(mOperand);
+            dest.writeString(mOperator.toString());
+        }
     }
 
     @Override
