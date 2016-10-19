@@ -55,33 +55,31 @@ class Calculator implements Parcelable{
             mInput = 0;
         }
 
-        int result = 0;
-
         switch (mOperator) {
             case ADD:
-                result = mOperand + mInput;
+                mOperand += mInput;
                 break;
             case SUBTRACT:
-                result = mOperand - mInput;
+                mOperand -= mInput;
                 break;
             case MULTIPLY:
-                result = mOperand * mInput;
+                mOperand *= mInput;
                 break;
             case DIVIDE:
-                result = mOperand / mInput;
+                mOperand /= mInput;
                 break;
             case OR:
-                result = mOperand | mInput;
+                mOperand |= mInput;
                 break;
             case XOR:
-                result = mOperand ^ mInput;
+                mOperand ^= mInput;
                 break;
             case AND:
-                result = mOperand & mInput;
+                mOperand &= mInput;
                 break;
         }
 
-        mInput = result;
+        mInput = mOperand;
 
         mOperand = null;
         mOperator = null;
