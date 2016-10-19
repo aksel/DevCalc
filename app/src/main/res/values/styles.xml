@@ -9,20 +9,24 @@
         <item name="android:colorForeground">@color/colorForeground</item>
         <item name="android:colorBackground">@color/colorBackground</item>
         <item name="android:textColorPrimary">@color/primary_text_material_light</item>
+        <item name="android:textViewStyle">@style/TextViewStyle</item>
         <item name="android:buttonStyle">@style/ButtonStyle</item>
         <item name="android:radioButtonStyle">@style/RadioButtonStyle</item>
         <item name="android:textColorPrimaryInverse">@color/primary_text_material_dark</item>
-        <item name="android:buttonStyleToggle">@style/BitToggleButton</item>
-    </style>
-
-    <style name="AppTheme.NoActionBar">
+        <item name="android:buttonStyleToggle">@style/ToggleButtonStyle</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
     <style name="ButtonStyle" parent="Widget.AppCompat.Button.Colored">
         <item name="android:gravity">top</item>
-        <item name="android:textSize">10dp</item>
+        <item name="android:textSize">@dimen/text_size_button</item>
+    </style>
+
+    <style name="TextViewStyle" parent="android:Widget.TextView">
+        <item name="android:typeface">monospace</item>
+        <item name="android:textSize">@dimen/text_size_display</item>
+        <item name="android:gravity">end|bottom</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
@@ -37,12 +41,12 @@
         <item name="android:minWidth">0dp</item>
         <item name="android:button">@null</item>
         <item name="android:typeface">monospace</item>
-        <item name="android:textSize">13dp</item>
+        <item name="android:textSize">@dimen/text_size_radio_button</item>
     </style>
 
-    <style name="BitToggleButton" parent="Base.Widget.AppCompat.Button.Borderless">
+    <style name="ToggleButtonStyle" parent="Base.Widget.AppCompat.Button.Borderless">
         <item name="android:typeface">monospace</item>>
-        <item name="android:textSize">13dp</item>>
+        <item name="android:textSize">@dimen/text_size_toggle_button</item>>
         <item name="android:padding">0dp</item>>
         <item name="android:minWidth">0dp</item>>
         <item name="android:minHeight">0dp</item>>
