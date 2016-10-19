@@ -10,8 +10,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="4dp"
-        android:paddingRight="4dp">
+        android:paddingLeft="@dimen/display_padding"
+        android:paddingRight="@dimen/display_padding">
 
         <include
             layout="@layout/display_byte"
@@ -50,12 +50,12 @@
 
     <Space
         android:layout_width="1dp"
-        android:layout_height="8dp">
+        android:layout_height="@dimen/space_size">
     </Space>
 
     <LinearLayout
         android:orientation="vertical"
-        android:padding="6dp"
+        android:padding="@dimen/display_padding"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary">
@@ -64,20 +64,14 @@
 
         <TextView
             android:id="@+id/text_view_operation"
-            android:typeface="monospace"
-            android:textSize="14dp"
             android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:gravity="end|bottom"
+            android:layout_height="@dimen/operation_text_view_height"
             tools:text="11111111 11111111 11111111 11111111\nXOR"/>
 
         <TextView
             android:id="@+id/text_view_input"
-            android:typeface="monospace"
-            android:textSize="14dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end|bottom"
             tools:text="11111111 11111111 11111111 11111111"/>
     </LinearLayout>
 </LinearLayout>
