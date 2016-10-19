@@ -7,24 +7,20 @@ import static com.akseltorgard.devcalc.Base.*;
 
 class Calculator implements Parcelable{
 
+    private Calculation mCalculation;
+
     /**
      * Current calculator input.
      */
-    private int mInput;
-
-    /**
-     * Operand. Is set to mInput when a operator is pressed.
-     */
-    private int mOperand;
+    private Integer mInput;
 
     /**
      * Base to expect in inputDigit(), and to produce in getInputString().
      */
     private Base mBase;
 
-    private Operator mOperator;
-
     Calculator() {
+        mCalculation = new Calculation();
         mInput = 0;
         mBase = DEC;
     }
@@ -48,6 +44,11 @@ class Calculator implements Parcelable{
         }
 
         return true;
+    }
+
+    void calculate() {
+        mCalculation.setOperandB(mInput);
+        mInput = mCalculation.calculate();
     }
 
     /**
@@ -104,6 +105,10 @@ class Calculator implements Parcelable{
         return bits;
     }
 
+    String getCalculationString() {
+        return mCalculation.toString();
+    }
+
     /**
      * Returns mInput as hex string, padded with 0's until length == 8.
      * @return mInput as hex string.
@@ -126,25 +131,10 @@ class Calculator implements Parcelable{
      * @return String of mInput in mBase.
      */
     String getInputString() {
+        if (mInput == null) {
+            return "0";
+        }
         return intToString(mInput);
-    }
-
-    /**
-     * Returns string that represents mOperand in base mBase, formatted if need be.
-     * @return String of mOperand in mBase.
-     */
-    String getOperandString() {
-        if (mOperator == null) {
-            return "";
-        }
-        return intToString(mOperand);
-    }
-
-    String getOperatorString() {
-        if (mOperator == null) {
-            return "";
-        }
-        return mOperator.toString();
     }
 
     /**
@@ -155,7 +145,7 @@ class Calculator implements Parcelable{
     boolean inputDigit(String digitString) {
         int digit = Integer.parseInt(digitString, mBase.toInt());
 
-        if (mInput == 0) {
+        if (mInput == null || mInput == 0) {
             mInput = digit;
         }
 
@@ -245,10 +235,28 @@ class Calculator implements Parcelable{
         return true;
     }
 
+    /**
+     * Sets operator. Returns whether display needs to be updated.
+     * @param operator Operator.
+     * @return Display needs to be updated.
+     */
     boolean setOperator(Operator operator) {
-        mOperator = operator;
-        mOperand = mInput;
-        return false;
+        if (!mCalculation.hasOperator()) {
+            mCalculation.setOperator(operator);
+            mCalculation.setOperandA(mInput);
+            mInput = null;
+            return true;
+        }
+
+        else if (mInput == null) {
+            mCalculation.setOperator(operator);
+            return false;
+        }
+
+        else {
+            calculate();
+            return setOperator(operator);
+        }
     }
 
     void toggleBit(int bitIndex) {
@@ -259,14 +267,12 @@ class Calculator implements Parcelable{
 
     private Calculator(Parcel in) {
         mInput = in.readInt();
-        mOperand = in.readInt();
         mBase = Base.fromIntBase(in.readInt());
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(mInput);
-        dest.writeInt(mOperand);
         dest.writeInt(mBase.toInt());
     }
 
