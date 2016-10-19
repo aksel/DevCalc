@@ -66,21 +66,6 @@ class Calculator implements Parcelable{
         }
     }
 
-    /**
-     * Adds spaces between digits at multiples of @spacing.
-     * @param string String to format.
-     * @param spacing Where to insert spaces.
-     * @return Formatted string.
-     */
-    private String formatStringSpacing(String string, int spacing) {
-        StringBuilder sb = new StringBuilder(string);
-        for (int i = string.length()-spacing; i > 0; i-=spacing) {
-            sb.insert(i, " ");
-        }
-
-        return sb.toString();
-    }
-
     Base getBase() {
         return mBase;
     }
@@ -109,20 +94,8 @@ class Calculator implements Parcelable{
         return mCalculation.toString();
     }
 
-    /**
-     * Returns mInput as hex string, padded with 0's until length == 8.
-     * @return mInput as hex string.
-     */
     String[] getHexStrings() {
-
-        String[] hexStrings = new String[4];
-
-        hexStrings[0] = String.format("%2s",Integer.toHexString(mInput & 0xff)).replace(" ", "0");
-        hexStrings[1] = String.format("%2s",Integer.toHexString((mInput >> 8) & 0xff)).replace(" ", "0");
-        hexStrings[2] = String.format("%2s",Integer.toHexString((mInput >> 16)& 0xff)).replace(" ", "0");
-        hexStrings[3] = String.format("%2s",Integer.toHexString((mInput >> 24)& 0xff)).replace(" ", "0");
-
-        return hexStrings;
+        return NumberStringUtils.intToHexStringArray(mInput);
     }
 
 
@@ -131,10 +104,7 @@ class Calculator implements Parcelable{
      * @return String of mInput in mBase.
      */
     String getInputString() {
-        if (mInput == null) {
-            return "0";
-        }
-        return intToString(mInput);
+        return NumberStringUtils.intToString(mInput, mBase);
     }
 
     /**
@@ -204,26 +174,6 @@ class Calculator implements Parcelable{
         mInput = mInput * 10 + digit;
 
         return true;
-    }
-
-    /**
-     * Converts i to String of number in mBase.
-     * @param i Integer to convert.
-     * @return String of number in mBase.
-     */
-    private String intToString(int i) {
-        switch (mBase) {
-            case BIN:
-                String binaryString = Integer.toBinaryString(i);
-                return formatStringSpacing(binaryString, 8);
-            case DEC:
-                return Integer.toString(i);
-            case HEX:
-                String hexString = Integer.toHexString(i);
-                return formatStringSpacing(hexString, 2);
-            default:
-                throw new NumberFormatException("Improper base: " + mBase);
-        }
     }
 
     boolean setBase(Base base) {
