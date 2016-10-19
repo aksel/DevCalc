@@ -217,25 +217,36 @@ public class MainActivity extends AppCompatActivity {
 
         //BINARY OPERATIONS
         {
-            final HashMap<Button, Operator> binaryOperations = new HashMap<>();
+            int[] buttonIds = {
+                    R.id.button_add,
+                    R.id.button_subtract,
+                    R.id.button_multiply,
+                    R.id.button_divide,
+                    R.id.button_or,
+                    R.id.button_xor,
+                    R.id.button_and
+            };
 
-            binaryOperations.put((Button) findViewById(R.id.button_add), ADD);
-            binaryOperations.put((Button) findViewById(R.id.button_subtract), SUBTRACT);
-            binaryOperations.put((Button) findViewById(R.id.button_multiply), MULTIPLY);
-            binaryOperations.put((Button) findViewById(R.id.button_divide), DIVIDE);
-            binaryOperations.put((Button) findViewById(R.id.button_or), OR);
-            binaryOperations.put((Button) findViewById(R.id.button_xor), XOR);
-            binaryOperations.put((Button) findViewById(R.id.button_and), AND);
+            Operator[] operators = {
+                    ADD,
+                    SUBTRACT,
+                    MULTIPLY,
+                    DIVIDE,
+                    OR,
+                    XOR,
+                    AND
+            };
 
             View.OnClickListener binaryOperationListener = new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Button b = (Button) v;
-                    binaryOperation(binaryOperations.get(b));
+                    binaryOperation((Operator) v.getTag());
                 }
             };
 
-            for (Button b : binaryOperations.keySet()) {
+            for (int i = 0; i < buttonIds.length; i++) {
+                Button b = (Button) findViewById(buttonIds[i]);
+                b.setTag(operators[i]);
                 b.setOnClickListener(binaryOperationListener);
             }
         }
