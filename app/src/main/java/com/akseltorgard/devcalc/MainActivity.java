@@ -12,8 +12,6 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import java.util.HashMap;
-
 import static com.akseltorgard.devcalc.Base.*;
 import static com.akseltorgard.devcalc.Operator.*;
 
@@ -46,19 +44,24 @@ public class MainActivity extends AppCompatActivity {
             mCalculator = new Calculator();
         }
 
-        Button backspaceButton = (Button) findViewById(R.id.button_backspace);
-        backspaceButton.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.button_backspace).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 backspace();
             }
         });
 
-        Button clearButton = (Button) findViewById(R.id.button_clear);
-        clearButton.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.button_clear).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 clear();
+            }
+        });
+        
+        findViewById(R.id.button_clear_entry).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearEntry();
             }
         });
 
@@ -72,12 +75,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void initDisplay() {
         InputFilter[] allCapsFilters = new InputFilter[] {new InputFilter.AllCaps()};
-
-        mOperation = (TextView) findViewById(R.id.text_view_operation);
-        mOperation.setFilters(allCapsFilters);
-
-        mInput = (TextView) findViewById(R.id.text_view_input);
-        mInput.setFilters(allCapsFilters);
 
         int[] byteLayoutIds = {
                 R.id.byte_1,
@@ -122,6 +119,12 @@ public class MainActivity extends AppCompatActivity {
                 mBitButtons[bitIndex] = bitButton;
             }
         }
+
+        mOperation = (TextView) findViewById(R.id.text_view_operation);
+        mOperation.setFilters(allCapsFilters);
+
+        mInput = (TextView) findViewById(R.id.text_view_input);
+        mInput.setFilters(allCapsFilters);
     }
 
     /**
@@ -270,6 +273,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void clear() {
         if (mCalculator.clear()) {
+            updateDisplay();
+        }
+    }
+
+    private void clearEntry() {
+        if (mCalculator.clearEntry()) {
             updateDisplay();
         }
     }

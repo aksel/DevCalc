@@ -88,18 +88,31 @@ class Calculator implements Parcelable{
     }
 
     /**
-     * Clears input, i.e. sets it to 0.
-     * @return Whether or not mInput changed.
+     * Completely resets calculator state. Returns false if state is already clean.
+     * @return Whether or not anything changed.
      */
     boolean clear() {
-        if (mInput == 0) {
+        if (mInput == 0 && mOperand == null && mOperator == null) {
             return false;
         }
 
-        else {
-            mInput = 0;
-            return true;
+        mInput = 0;
+        mOperand = null;
+        mOperator = null;
+        return true;
+    }
+
+    /**
+     * Clears input by setting mInput to 0. Returns false if mInput is null or 0.
+     * @return Whether mInput changed.
+     */
+    boolean clearEntry() {
+        if (mInput == null || mInput == 0) {
+            return false;
         }
+
+        mInput = 0;
+        return true;
     }
 
     Base getBase() {
