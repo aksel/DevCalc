@@ -7,7 +7,7 @@ import static com.akseltorgard.devcalc.Base.*;
 
 class Calculator implements Parcelable{
 
-    private Calculation mCalculation;
+    private BinaryOperation mBinaryOperation;
 
     /**
      * Current calculator input.
@@ -20,7 +20,7 @@ class Calculator implements Parcelable{
     private Base mBase;
 
     Calculator() {
-        mCalculation = new Calculation();
+        mBinaryOperation = new BinaryOperation();
         mInput = 0;
         mBase = DEC;
     }
@@ -47,8 +47,8 @@ class Calculator implements Parcelable{
     }
 
     void calculate() {
-        mCalculation.setOperandB(mInput);
-        mInput = mCalculation.calculate();
+        mBinaryOperation.setOperandB(mInput);
+        mInput = mBinaryOperation.calculate();
     }
 
     /**
@@ -91,7 +91,7 @@ class Calculator implements Parcelable{
     }
 
     String getCalculationString() {
-        return mCalculation.toString();
+        return mBinaryOperation.toString();
     }
 
     String[] getHexStrings() {
@@ -191,15 +191,15 @@ class Calculator implements Parcelable{
      * @return Display needs to be updated.
      */
     boolean setOperator(Operator operator) {
-        if (!mCalculation.hasOperator()) {
-            mCalculation.setOperator(operator);
-            mCalculation.setOperandA(mInput);
+        if (!mBinaryOperation.hasOperator()) {
+            mBinaryOperation.setOperator(operator);
+            mBinaryOperation.setOperandA(mInput);
             mInput = null;
             return true;
         }
 
         else if (mInput == null) {
-            mCalculation.setOperator(operator);
+            mBinaryOperation.setOperator(operator);
             return false;
         }
 

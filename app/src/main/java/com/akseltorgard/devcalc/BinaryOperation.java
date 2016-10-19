@@ -1,6 +1,6 @@
 package com.akseltorgard.devcalc;
 
-class Calculation {
+class BinaryOperation {
 
     private Operator mOperator;
     private Integer mOperandA;
