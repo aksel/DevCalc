@@ -218,14 +218,9 @@ public class MainActivity extends AppCompatActivity {
         operators.put((Button) findViewById(R.id.button_subtract),    SUBTRACT);
         operators.put((Button) findViewById(R.id.button_multiply),    MULTIPLY);
         operators.put((Button) findViewById(R.id.button_divide),      DIVIDE);
-        operators.put((Button) findViewById(R.id.button_increment),   INCREMENT);
-        operators.put((Button) findViewById(R.id.button_decrement),   DECREMENT);
         operators.put((Button) findViewById(R.id.button_or),          OR);
         operators.put((Button) findViewById(R.id.button_xor),         XOR);
         operators.put((Button) findViewById(R.id.button_and),         AND);
-        operators.put((Button) findViewById(R.id.button_not),         NOT);
-        operators.put((Button) findViewById(R.id.button_left_shift),  LEFT_SHIFT);
-        operators.put((Button) findViewById(R.id.button_right_shift), RIGHT_SHIFT);
 
         View.OnClickListener operatorListener = new View.OnClickListener() {
             @Override

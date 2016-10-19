@@ -5,14 +5,9 @@ enum Operator {
     SUBTRACT("-"),
     MULTIPLY("*"),
     DIVIDE("/"),
-    INCREMENT("++"),
-    DECREMENT("--"),
     OR("OR"),
     XOR("XOR"),
-    AND("AND"),
-    NOT("NOT"),
-    LEFT_SHIFT("<<"),
-    RIGHT_SHIFT(">>");
+    AND("AND");
 
     private String mSign;
     Operator(String sign) {
