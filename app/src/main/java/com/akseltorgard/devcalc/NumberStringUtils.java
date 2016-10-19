@@ -55,20 +55,20 @@ class NumberStringUtils {
 
         String[] hexStrings = new String[4];
 
-        hexStrings[0] = byteToHexString((byte) (i & 0xff));
-        hexStrings[1] = byteToHexString((byte) ((i >> 8) & 0xff));
-        hexStrings[2] = byteToHexString((byte) ((i >> 16) & 0xff));
-        hexStrings[3] = byteToHexString((byte) ((i >> 24) & 0xff));
+        hexStrings[0] = intToHexString(i & 0xff);
+        hexStrings[1] = intToHexString((i >> 8) & 0xff);
+        hexStrings[2] = intToHexString((i >> 16) & 0xff);
+        hexStrings[3] = intToHexString((i >> 24) & 0xff);
 
         return hexStrings;
     }
 
     /**
-     * Returns b, padded with 0 if length < 2.
-     * @param b Byte to convert.
-     * @return b Byte.
+     * Returns i, padded with 0 if length < 2.
+     * @param i Int to convert.
+     * @return i Int as string.
      */
-    private static String byteToHexString(byte b) {
-        return String.format("%2s",Integer.toHexString(b)).replace(" ", "0");
+    private static String intToHexString(int i) {
+        return String.format("%2s",Integer.toHexString(i)).replace(" ", "0");
     }
 }
