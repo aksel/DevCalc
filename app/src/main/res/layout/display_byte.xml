@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <TextView
+        android:id="@+id/display_hex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end">
-
-        <include
-            android:id="@+id/display_hex"
-            layout="@layout/display_hex"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+        android:layout_gravity="end"
+        tools:text="FF"/>
 
     <LinearLayout
         android:orientation="horizontal"
