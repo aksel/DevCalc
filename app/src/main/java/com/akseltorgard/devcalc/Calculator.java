@@ -276,7 +276,7 @@ class Calculator implements Parcelable{
         }
 
         //Operator pressed before any digit has been input
-        else if (mInput == null) {
+        else if (mInput == null || mInput == 0) {
             mOperator = operator;
         }
 
