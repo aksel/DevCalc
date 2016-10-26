@@ -1,7 +1,6 @@
 # DevCalc
 Software developer's calculator, for Android
 
-A calculator made for the software developer.
 Features:
 * Convert between binary, decimal and hexadecimal
 * Toggle bits with a tap
