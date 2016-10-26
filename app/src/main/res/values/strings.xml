@@ -27,10 +27,10 @@
     <string name="minus">-</string>
     <string name="multiply">*</string>
     <string name="divide">/</string>
-    <string name="and"><![CDATA[&]]></string>
-    <string name="or">|</string>
-    <string name="xor">^</string>
-    <string name="not">~</string>
+    <string name="and">AND</string>
+    <string name="or">OR</string>
+    <string name="xor">XOR</string>
+    <string name="not">NOT</string>
     <string name="left_shift"><![CDATA[<<]]></string>
     <string name="right_shift"><![CDATA[>>]]></string>
     <string name="decrement">- -</string>
