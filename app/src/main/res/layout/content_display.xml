@@ -66,12 +66,14 @@
             android:id="@+id/text_view_operation"
             android:layout_width="match_parent"
             android:layout_height="@dimen/operation_text_view_height"
+            android:textAllCaps="true"
             tools:text="11111111 11111111 11111111 11111111\nXOR"/>
 
         <TextView
             android:id="@+id/text_view_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textAllCaps="true"
             tools:text="11111111 11111111 11111111 11111111"/>
     </LinearLayout>
 </LinearLayout>
