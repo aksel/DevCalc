@@ -3,9 +3,7 @@ package com.akseltorgard.devcalc;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.InputFilter;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -75,8 +73,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initDisplay() {
-        InputFilter[] allCapsFilters = new InputFilter[] {new InputFilter.AllCaps()};
-
         int[] byteLayoutIds = {
                 R.id.byte_1,
                 R.id.byte_2,
@@ -88,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i = 0; i < byteLayoutIds.length; i++) {
             mHexTextViews[i] = (TextView) findViewById(byteLayoutIds[i]).findViewById(R.id.display_hex);
-            mHexTextViews[i].setFilters(allCapsFilters);
         }
 
         View.OnClickListener bitButtonListener = new View.OnClickListener() {
@@ -122,10 +117,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         mOperation = (TextView) findViewById(R.id.text_view_operation);
-        mOperation.setFilters(allCapsFilters);
 
         mInput = (TextView) findViewById(R.id.text_view_input);
-        mInput.setFilters(allCapsFilters);
     }
 
     /**
