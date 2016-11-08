@@ -25,16 +25,12 @@ enum Base {
         return mDigitSize;
     }
 
-    static Base fromIntBase(int base) {
-        switch (base) {
-            case 2:
-                return BIN;
-            case 10:
-                return DEC;
-            case 16:
-                return HEX;
-            default:
-                throw new IllegalArgumentException("Invalid base: " + base);
+    static Base fromIntBase(int intBase) {
+        for (Base base : Base.values()) {
+            if (base.mBase == intBase) {
+                return base;
+            }
         }
+        throw new IllegalArgumentException("Invalid base: " + intBase);
     }
 }
