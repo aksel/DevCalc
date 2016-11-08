@@ -2,9 +2,8 @@ package com.akseltorgard.devcalc;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.widget.Toast;
 
-import static com.akseltorgard.devcalc.Base.*;
+import static com.akseltorgard.devcalc.Base.DEC;
 
 class Calculator implements Parcelable{
 
@@ -14,7 +13,7 @@ class Calculator implements Parcelable{
     /**
      * Current calculator input.
      */
-    private Integer mInput;
+    private int mInput;
 
     /**
      * Base to expect in inputDigit(), and to produce in getInputString().
@@ -52,10 +51,6 @@ class Calculator implements Parcelable{
             return;
         }
 
-        if (mInput == null) {
-            mInput = 0;
-        }
-
         switch (mOperator) {
             case ADD:
                 mOperand += mInput;
@@ -90,10 +85,6 @@ class Calculator implements Parcelable{
     }
 
     void calculateUnaryOperation(Operators.UnaryOperator operator) {
-        if (mInput == null) {
-            mInput = 0;
-        }
-
         switch (operator) {
             case INCREMENT:
                 mInput++;
@@ -133,7 +124,7 @@ class Calculator implements Parcelable{
      * @return Whether mInput changed.
      */
     boolean clearEntry() {
-        if (mInput == null || mInput == 0) {
+        if (mInput == 0) {
             return false;
         }
 
@@ -153,7 +144,7 @@ class Calculator implements Parcelable{
     boolean[] getBits() {
         boolean[] bits = new boolean[32];
 
-        if (mInput == null || mInput == 0) {
+        if (mInput == 0) {
             return bits;
         }
 
@@ -198,7 +189,7 @@ class Calculator implements Parcelable{
     boolean inputDigit(String digitString) {
         int digit = Integer.parseInt(digitString, mBase.toInt());
 
-        if (mInput == null || mInput == 0) {
+        if (mInput == 0) {
             mInput = digit;
         }
 
@@ -272,11 +263,11 @@ class Calculator implements Parcelable{
         if (mOperator == null) {
             mOperator = operator;
             mOperand = mInput;
-            mInput = null;
+            mInput = 0;
         }
 
         //Operator pressed before any digit has been input
-        else if (mInput == null || mInput == 0) {
+        else if (mInput == 0) {
             mOperator = operator;
         }
 
@@ -287,10 +278,6 @@ class Calculator implements Parcelable{
     }
 
     void toggleBit(int bitIndex) {
-        if (mInput == null) {
-            mInput = 0;
-        }
-
         mInput ^= (1 << bitIndex);
     }
 
@@ -308,7 +295,7 @@ class Calculator implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(mInput != null ? mInput:0);
+        dest.writeInt(mInput);
         dest.writeInt(mBase.toInt());
 
         if (mOperand != null) {
