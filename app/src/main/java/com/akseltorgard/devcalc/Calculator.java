@@ -2,9 +2,8 @@ package com.akseltorgard.devcalc;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.widget.Toast;
 
-import static com.akseltorgard.devcalc.Base.*;
+import static com.akseltorgard.devcalc.Base.DEC;
 
 class Calculator implements Parcelable{
 
@@ -94,23 +93,7 @@ class Calculator implements Parcelable{
             mInput = 0;
         }
 
-        switch (operator) {
-            case INCREMENT:
-                mInput++;
-                break;
-            case DECREMENT:
-                mInput--;
-                break;
-            case NOT:
-                mInput = ~mInput;
-                break;
-            case LEFT_SHIFT:
-                mInput <<= 1;
-                break;
-            case RIGHT_SHIFT:
-                mInput >>>= 1;
-                break;
-        }
+        mInput = operator.operate(mInput);
     }
 
     /**
