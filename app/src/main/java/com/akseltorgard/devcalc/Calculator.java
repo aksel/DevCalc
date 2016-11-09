@@ -7,7 +7,7 @@ import static com.akseltorgard.devcalc.Base.DEC;
 
 class Calculator implements Parcelable{
 
-    private Integer mOperand;
+    private int mOperand;
     private Operators.BinaryOperator mOperator;
 
     /**
@@ -47,13 +47,13 @@ class Calculator implements Parcelable{
     }
 
     void calculateBinaryOperation() {
-        if (mOperand == null || mOperator == null) {
+        if (mOperator == null) {
             return;
         }
 
         mInput = mOperator.operate(mOperand, mInput);
 
-        mOperand = null;
+        mOperand = 0;
         mOperator = null;
     }
 
@@ -66,12 +66,12 @@ class Calculator implements Parcelable{
      * @return Whether or not anything changed.
      */
     boolean clear() {
-        if (mInput == 0 && mOperand == null && mOperator == null) {
+        if (mInput == 0 && mOperand == 0 && mOperator == null) {
             return false;
         }
 
         mInput = 0;
-        mOperand = null;
+        mOperand = 0;
         mOperator = null;
         return true;
     }
@@ -118,7 +118,7 @@ class Calculator implements Parcelable{
     }
 
     String getCalculationString() {
-        if (mOperand != null && mOperator != null) {
+        if (mOperator != null) {
             return NumberStringUtils.intToString(mOperand, mBase) + "\n" + mOperator;
         }
 
@@ -255,7 +255,7 @@ class Calculator implements Parcelable{
         dest.writeInt(mInput);
         dest.writeInt(mBase.toInt());
 
-        if (mOperand != null) {
+        if (mOperand != 0) {
             dest.writeInt(mOperand);
             dest.writeString(mOperator.toString());
         }

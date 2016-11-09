@@ -19,14 +19,10 @@ class NumberStringUtils {
 
     /**
      * Converts i to String of number in mBase.
-     * @param i Integer to convert.
+     * @param i Int to convert.
      * @return String of number in mBase.
      */
-    static String intToString(Integer i, Base base) {
-        if (i == null) {
-            return "0";
-        }
-
+    static String intToString(int i, Base base) {
         switch (base) {
             case BIN:
                 String binaryString = Integer.toBinaryString(i);
@@ -43,16 +39,10 @@ class NumberStringUtils {
 
     /**
      * Returns i as 4 hex strings.
-     * @param i Integer to convert.
+     * @param i Int to convert.
      * @return i as hex string.
      */
-    static String[] intToHexStringArray(Integer i) {
-        if (i == null || i == 0) {
-            return new String[] {
-                    "00","00","00","00"
-            };
-        }
-
+    static String[] intToHexStringArray(int i) {
         String[] hexStrings = new String[4];
 
         hexStrings[0] = intToHexString(i & 0xff);
