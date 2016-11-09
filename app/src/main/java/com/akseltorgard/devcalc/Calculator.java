@@ -55,34 +55,7 @@ class Calculator implements Parcelable{
             mInput = 0;
         }
 
-        switch (mOperator) {
-            case ADD:
-                mOperand += mInput;
-                break;
-            case SUBTRACT:
-                mOperand -= mInput;
-                break;
-            case MULTIPLY:
-                mOperand *= mInput;
-                break;
-            case DIVIDE:
-                if (mInput == 0) {
-                    return;
-                }
-                mOperand /= mInput;
-                break;
-            case OR:
-                mOperand |= mInput;
-                break;
-            case XOR:
-                mOperand ^= mInput;
-                break;
-            case AND:
-                mOperand &= mInput;
-                break;
-        }
-
-        mInput = mOperand;
+        mInput = mOperator.operate(mOperand, mInput);
 
         mOperand = null;
         mOperator = null;
