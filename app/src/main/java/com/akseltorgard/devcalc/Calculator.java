@@ -34,14 +34,7 @@ class Calculator implements Parcelable{
             return false;
         }
 
-        switch (mBase) {
-            case BIN: case HEX:
-                mInput >>>= mBase.getDigitSize();
-                break;
-            case DEC:
-                mInput /= 10;
-                break;
-        }
+        mInput = mBase.backspace(mInput);
 
         return true;
     }
