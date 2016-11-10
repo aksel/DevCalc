@@ -1,66 +1,13 @@
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="activity_horizontal_margin">8dp</dimen>
+    <dimen name="activity_vertical_margin">8dp</dimen>
 
-    <dimen name="activity_horizontal_margin_ldpi">8dp</dimen>
-    <dimen name="activity_horizontal_margin_mdpi">8dp</dimen>
-    <dimen name="activity_horizontal_margin_hdpi">8dp</dimen>
-    <dimen name="activity_horizontal_margin_xhdpi">8dp</dimen>
-    <dimen name="activity_horizontal_margin_xxhdpi">10dp</dimen>
-    <dimen name="activity_horizontal_margin_xxxhdpi">10dp</dimen>
+    <dimen name="text_size_display">15dp</dimen>
+    <dimen name="text_size_button">16dp</dimen>
+    <dimen name="text_size_toggle_button">14dp</dimen>
+    <dimen name="text_size_radio_button">12dp</dimen>
 
-    <dimen name="activity_vertical_margin_ldpi">8dp</dimen>
-    <dimen name="activity_vertical_margin_mdpi">16dp</dimen>
-    <dimen name="activity_vertical_margin_hdpi">8dp</dimen>
-    <dimen name="activity_vertical_margin_xhdpi">8dp</dimen>
-    <dimen name="activity_vertical_margin_xxhdpi">10dp</dimen>
-    <dimen name="activity_vertical_margin_xxxhdpi">10dp</dimen>
-
-    <dimen name="operation_text_view_height_ldpi">48dp</dimen>
-    <dimen name="operation_text_view_height_mdpi">48dp</dimen>
-    <dimen name="operation_text_view_height_hdpi">32dp</dimen>
-    <dimen name="operation_text_view_height_xhdpi">36dp</dimen>
-    <dimen name="operation_text_view_height_xxhdpi">36dp</dimen>
-    <dimen name="operation_text_view_height_xxxhdpi">36dp</dimen>
-
-    <dimen name="text_size_display_ldpi">13dp</dimen>
-    <dimen name="text_size_display_mdpi">20dp</dimen>
-    <dimen name="text_size_display_hdpi">13dp</dimen>
-    <dimen name="text_size_display_xhdpi">15dp</dimen>
-    <dimen name="text_size_display_xxhdpi">15dp</dimen>
-    <dimen name="text_size_display_xxxhdpi">15dp</dimen>
-
-    <dimen name="text_size_button_ldpi">12dp</dimen>
-    <dimen name="text_size_button_mdpi">19dp</dimen>
-    <dimen name="text_size_button_hdpi">12dp</dimen>
-    <dimen name="text_size_button_xhdpi">16dp</dimen>
-    <dimen name="text_size_button_xxhdpi">15dp</dimen>
-    <dimen name="text_size_button_xxxhdpi">15dp</dimen>
-
-    <dimen name="text_size_toggle_button_ldpi">12dp</dimen>
-    <dimen name="text_size_toggle_button_mdpi">20dp</dimen>
-    <dimen name="text_size_toggle_button_hdpi">12dp</dimen>
-    <dimen name="text_size_toggle_button_xhdpi">14dp</dimen>
-    <dimen name="text_size_toggle_button_xxhdpi">14dp</dimen>
-    <dimen name="text_size_toggle_button_xxxhdpi">14dp</dimen>
-
-    <dimen name="text_size_radio_button_ldpi">12dp</dimen>
-    <dimen name="text_size_radio_button_mdpi">16dp</dimen>
-    <dimen name="text_size_radio_button_hdpi">10dp</dimen>
-    <dimen name="text_size_radio_button_xhdpi">12dp</dimen>
-    <dimen name="text_size_radio_button_xxhdpi">12dp</dimen>
-    <dimen name="text_size_radio_button_xxxhdpi">12dp</dimen>
-
-    <dimen name="space_size_ldpi">0dp</dimen>
-    <dimen name="space_size_mdpi">8dp</dimen>
-    <dimen name="space_size_hdpi">0dp</dimen>
-    <dimen name="space_size_xhdpi">4dp</dimen>
-    <dimen name="space_size_xxhdpi">4dp</dimen>
-    <dimen name="space_size_xxxhdpi">4dp</dimen>
-
-    <dimen name="display_padding_ldpi">5dp</dimen>
-    <dimen name="display_padding_mdpi">10dp</dimen>
-    <dimen name="display_padding_hdpi">6dp</dimen>
-    <dimen name="display_padding_xhdpi">6dp</dimen>
-    <dimen name="display_padding_xxhdpi">6dp</dimen>
-    <dimen name="display_padding_xxxhdpi">6dp</dimen>
+    <dimen name="operation_text_view_height">36dp</dimen>
+    <dimen name="space_size">4dp</dimen>
+    <dimen name="display_padding">6dp</dimen>
 </resources>
