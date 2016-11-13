@@ -6,8 +6,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorForeground</item>
-        <item name="android:colorForeground">@color/colorForeground</item>
-        <item name="android:colorBackground">@color/colorBackground</item>
         <item name="android:textColorPrimary">@color/primary_text_material_light</item>
         <item name="android:textViewStyle">@style/TextViewStyle</item>
         <item name="android:buttonStyle">@style/ButtonStyle</item>
@@ -27,6 +25,13 @@
         <item name="android:typeface">monospace</item>
         <item name="android:textSize">@dimen/text_size_display</item>
         <item name="android:gravity">end|bottom</item>
+    </style>
+
+    <style name="CalculatorButton" parent="android:Widget.TextView">
+        <item name="android:background">?selectableItemBackgroundBorderless</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/text_size_button</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
