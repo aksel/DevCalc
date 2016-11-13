@@ -57,8 +57,7 @@
         android:orientation="vertical"
         android:padding="@dimen/display_padding"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary">
+        android:layout_height="wrap_content">
 
         <include layout="@layout/display_base_selector"/>
 
