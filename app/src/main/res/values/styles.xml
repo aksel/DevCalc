@@ -28,7 +28,8 @@
     </style>
 
     <style name="CalculatorButton" parent="android:Widget.TextView">
-        <item name="android:background">?selectableItemBackgroundBorderless</item>
+        <item name="android:background">@drawable/bg_calculator_button</item>
+        <item name="android:foreground">?selectableItemBackgroundBorderless</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/text_size_button</item>
