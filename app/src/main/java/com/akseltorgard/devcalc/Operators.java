@@ -57,21 +57,6 @@ class Operators {
 
         public abstract int operate(int operand1, int operand2);
 
-        /**
-         * Returns BinaryOperator based on String sign
-         *
-         * @param sign Sign of desired operator.
-         * @return BinaryOperator.
-         */
-        static BinaryOperator fromStringSign(String sign) {
-            for (BinaryOperator binaryOperator : BinaryOperator.values()) {
-                if (binaryOperator.mSign.equals(sign)) {
-                    return binaryOperator;
-                }
-            }
-            throw new IllegalArgumentException("Unknown sign: " + sign);
-        }
-
         @Override
         public String toString() {
             return mSign;

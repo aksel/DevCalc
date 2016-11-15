@@ -235,22 +235,22 @@ class Calculator implements Parcelable{
 
     private Calculator(Parcel in) {
         mInput = in.readInt();
-        mBase = Base.fromIntBase(in.readInt());
+        mBase = Base.valueOf(in.readString());
 
         if (in.dataAvail() > 0) {
             mOperand = in.readInt();
-            mOperator = Operators.BinaryOperator.fromStringSign(in.readString());
+            mOperator = Operators.BinaryOperator.valueOf(in.readString());
         }
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(mInput);
-        dest.writeInt(mBase.toInt());
+        dest.writeString(mBase.name());
 
         if (mOperand != 0) {
             dest.writeInt(mOperand);
-            dest.writeString(mOperator.toString());
+            dest.writeString(mOperator.name());
         }
     }
 

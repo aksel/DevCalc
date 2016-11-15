@@ -40,14 +40,5 @@ enum Base {
         return mDigitSize;
     }
 
-    static Base fromIntBase(int intBase) {
-        for (Base base : Base.values()) {
-            if (base.mBase == intBase) {
-                return base;
-            }
-        }
-        throw new IllegalArgumentException("Invalid base: " + intBase);
-    }
-
     public abstract int backspace(int i);
 }
