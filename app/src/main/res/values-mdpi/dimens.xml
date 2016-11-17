@@ -2,7 +2,6 @@
     <dimen name="activity_horizontal_margin">@dimen/activity_horizontal_margin_mdpi</dimen>
     <dimen name="activity_vertical_margin">@dimen/activity_vertical_margin_mdpi</dimen>
     <dimen name="text_size_display">@dimen/text_size_display_mdpi</dimen>
-    <dimen name="text_size_button">@dimen/text_size_button_mdpi</dimen>
     <dimen name="text_size_radio_button">@dimen/text_size_radio_button_mdpi</dimen>
     <dimen name="text_size_toggle_button">@dimen/text_size_toggle_button_mdpi</dimen>
     <dimen name="operation_text_view_height">@dimen/operation_text_view_height_mdpi</dimen>
