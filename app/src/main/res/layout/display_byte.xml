@@ -2,51 +2,61 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end">
+        android:layout_gravity="end"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_toggle_button"
-            android:text="@string/hex_prefix"/>
+            android:text="@string/hex_prefix"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_toggle_button"/>
+
         <TextView
             android:id="@+id/display_hex"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAllCaps="true"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/text_size_toggle_button"
             tools:text="FF"/>
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <ToggleButton
             android:id="@+id/bit_8"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"/>
+
         <ToggleButton
             android:id="@+id/bit_7"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"/>
+
         <ToggleButton
             android:id="@+id/bit_6"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"/>
+
         <ToggleButton
             android:id="@+id/bit_5"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"/>
 
         <Space
             android:layout_width="6dp"
@@ -55,18 +65,25 @@
         <ToggleButton
             android:id="@+id/bit_4"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"/>
+
         <ToggleButton
             android:id="@+id/bit_3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"/>
+
         <ToggleButton
             android:id="@+id/bit_2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"/>
+
         <ToggleButton
             android:id="@+id/bit_1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"/>
     </LinearLayout>
 </LinearLayout>
