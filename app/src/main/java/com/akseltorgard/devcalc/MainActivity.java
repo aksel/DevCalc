@@ -16,19 +16,19 @@ import static com.akseltorgard.devcalc.Operators.UnaryOperator.*;
 
 public class MainActivity extends AppCompatActivity {
 
-    static final String TAG = "DevCalc.MainActivity";
-    static final String KEY_CALCULATOR = "Key mCalculator";
+    private static final String TAG = "DevCalc.MainActivity";
+    private static final String KEY_CALCULATOR = "Key mCalculator";
 
-    Calculator mCalculator;
+    private Calculator mCalculator;
 
     //DISPLAY MEMBERS
-    TextView[] mHexTextViews;
-    ToggleButton[] mBitButtons;
-    TextView mInput;
-    TextView mOperation;
+    private TextView[] mHexTextViews;
+    private ToggleButton[] mBitButtons;
+    private TextView mInput;
+    private TextView mOperation;
     //END DISPLAY MEMBERS
 
-    Button[] mNumbers;
+    private Button[] mNumbers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
