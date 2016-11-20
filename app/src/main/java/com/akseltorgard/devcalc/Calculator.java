@@ -3,12 +3,15 @@ package com.akseltorgard.devcalc;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.akseltorgard.devcalc.operator.BinaryOperator;
+import com.akseltorgard.devcalc.operator.UnaryOperator;
+
 import static com.akseltorgard.devcalc.Base.DEC;
 
 class Calculator implements Parcelable{
 
     private int mOperand;
-    private Operators.BinaryOperator mOperator;
+    private BinaryOperator mOperator;
 
     /**
      * Current calculator input.
@@ -50,7 +53,7 @@ class Calculator implements Parcelable{
         mOperator = null;
     }
 
-    void calculateUnaryOperation(Operators.UnaryOperator operator) {
+    void calculateUnaryOperation(UnaryOperator operator) {
         mInput = operator.operate(mInput);
     }
 
@@ -209,7 +212,7 @@ class Calculator implements Parcelable{
         return true;
     }
 
-    void setOperator(Operators.BinaryOperator operator) {
+    void setOperator(BinaryOperator operator) {
         if (mOperator == null) {
             mOperator = operator;
             mOperand = mInput;
@@ -239,7 +242,7 @@ class Calculator implements Parcelable{
 
         if (in.dataAvail() > 0) {
             mOperand = in.readInt();
-            mOperator = Operators.BinaryOperator.valueOf(in.readString());
+            mOperator = BinaryOperator.valueOf(in.readString());
         }
     }
 

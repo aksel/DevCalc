@@ -10,9 +10,12 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.akseltorgard.devcalc.operator.BinaryOperator;
+import com.akseltorgard.devcalc.operator.UnaryOperator;
+
 import static com.akseltorgard.devcalc.Base.*;
-import static com.akseltorgard.devcalc.Operators.BinaryOperator.*;
-import static com.akseltorgard.devcalc.Operators.UnaryOperator.*;
+import static com.akseltorgard.devcalc.operator.BinaryOperator.*;
+import static com.akseltorgard.devcalc.operator.UnaryOperator.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -217,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
                     R.id.button_right_shift
             };
 
-            Operators.UnaryOperator[] unaryOperators = {
+            UnaryOperator[] unaryOperators = {
                     INCREMENT,
                     DECREMENT,
                     NOT,
@@ -228,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
             View.OnClickListener unaryOperatorListener = new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    pressedUnaryOperator((Operators.UnaryOperator) v.getTag());
+                    pressedUnaryOperator((UnaryOperator) v.getTag());
                 }
             };
 
@@ -251,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
                     R.id.button_and
             };
 
-            Operators.BinaryOperator[] binaryOperators = {
+            BinaryOperator[] binaryOperators = {
                     ADD,
                     SUBTRACT,
                     MULTIPLY,
@@ -264,7 +267,7 @@ public class MainActivity extends AppCompatActivity {
             View.OnClickListener binaryOperatorListener = new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    pressedBinaryOperator((Operators.BinaryOperator) v.getTag());
+                    pressedBinaryOperator((BinaryOperator) v.getTag());
                 }
             };
 
@@ -327,7 +330,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void pressedBinaryOperator(Operators.BinaryOperator binaryOperator) {
+    private void pressedBinaryOperator(BinaryOperator binaryOperator) {
         Log.d(TAG, "PRESSED: " + binaryOperator.toString());
 
         mCalculator.setOperator(binaryOperator);
@@ -347,7 +350,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void pressedUnaryOperator(Operators.UnaryOperator unaryOperator) {
+    private void pressedUnaryOperator(UnaryOperator unaryOperator) {
         Log.d(TAG, "PRESSED: " + unaryOperator.toString());
 
         mCalculator.calculateUnaryOperation(unaryOperator);
