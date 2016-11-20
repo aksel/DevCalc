@@ -16,8 +16,8 @@ import static com.akseltorgard.devcalc.Operators.UnaryOperator.*;
 
 public class MainActivity extends AppCompatActivity {
 
-    final String TAG = "DevCalc.MainActivity";
-    final String KEY_CALCULATOR = "Key mCalculator";
+    static final String TAG = "DevCalc.MainActivity";
+    static final String KEY_CALCULATOR = "Key mCalculator";
 
     Calculator mCalculator;
 
