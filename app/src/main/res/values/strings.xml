@@ -20,7 +20,7 @@
     <string name="bin">BIN</string>
     <string name="dec">DEC</string>
     <string name="hex">HEX</string>
-    <string name="hex_prefix">0x</string>
+    <string name="hex_prefix">0x%1$s</string>
     <string name="equals">=</string>
     <string name="plus">+</string>
     <string name="increment"> ++</string>
