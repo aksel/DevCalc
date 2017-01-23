@@ -115,7 +115,7 @@ class Calculator implements Parcelable{
 
     String getCalculationString() {
         if (mOperator != null) {
-            return NumberStringUtils.intToString(mOperand, mBase) + "\n" + mOperator;
+            return mBase.toString(mOperand) + "\n" + mOperator;
         }
 
         return "";
@@ -131,7 +131,7 @@ class Calculator implements Parcelable{
      * @return String of mInput in mBase.
      */
     String getInputString() {
-        return NumberStringUtils.intToString(mInput, mBase);
+        return mBase.toString(mInput);
     }
 
     /**

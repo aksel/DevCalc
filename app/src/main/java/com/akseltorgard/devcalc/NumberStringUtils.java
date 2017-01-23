@@ -3,41 +3,6 @@ package com.akseltorgard.devcalc;
 class NumberStringUtils {
 
     /**
-     * Adds spaces between digits at multiples of @spacing.
-     * @param string String to format.
-     * @param spacing Where to insert spaces.
-     * @return Formatted string.
-     */
-    private static String formatStringSpacing(String string, int spacing) {
-        StringBuilder sb = new StringBuilder(string);
-        for (int i = string.length()-spacing; i > 0; i-=spacing) {
-            sb.insert(i, " ");
-        }
-
-        return sb.toString();
-    }
-
-    /**
-     * Converts i to String of number in mBase.
-     * @param i Int to convert.
-     * @return String of number in mBase.
-     */
-    static String intToString(int i, Base base) {
-        switch (base) {
-            case BIN:
-                String binaryString = Integer.toBinaryString(i);
-                return formatStringSpacing(binaryString, 8);
-            case DEC:
-                return Integer.toString(i);
-            case HEX:
-                String hexString = Integer.toHexString(i);
-                return formatStringSpacing(hexString, 2);
-            default:
-                throw new NumberFormatException("Improper base: " + base);
-        }
-    }
-
-    /**
      * Returns i as 4 hex strings.
      * @param i Int to convert.
      * @return i as hex string.
