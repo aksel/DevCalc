@@ -59,6 +59,6 @@ class NumberStringUtils {
      * @return i Int as string.
      */
     private static String intToHexString(int i) {
-        return String.format("%2s",Integer.toHexString(i)).replace(" ", "0");
+        return String.format("%02X", i);
     }
 }
