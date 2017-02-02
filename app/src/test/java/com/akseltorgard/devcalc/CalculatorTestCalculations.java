@@ -4,8 +4,8 @@ import org.junit.Test;
 
 import static com.akseltorgard.devcalc.Base.HEX;
 import static org.junit.Assert.assertEquals;
-import static com.akseltorgard.devcalc.Operators.BinaryOperator.*;
-import static com.akseltorgard.devcalc.Operators.UnaryOperator.*;
+import static com.akseltorgard.devcalc.operator.BinaryOperator.*;
+import static com.akseltorgard.devcalc.operator.UnaryOperator.*;
 
 public class CalculatorTestCalculations {
 
