@@ -9,20 +9,20 @@ public class NumberStringUtilsTest {
 
     @Test
     public void testIntToBinaryString() {
-        assertEquals("0", NumberStringUtils.intToString(0, Base.BIN));
-        assertEquals("11111111", NumberStringUtils.intToString(0xff, Base.BIN));
-        assertEquals("11111111 00000000", NumberStringUtils.intToString(0xff00, Base.BIN));
-        assertEquals("11111111 00000000 00000000", NumberStringUtils.intToString(0xff0000, Base.BIN));
-        assertEquals("11111111 00000000 00000000 00000000", NumberStringUtils.intToString(0xff000000, Base.BIN));
+        assertEquals("0", Base.BIN.toString(0));
+        assertEquals("11111111", Base.BIN.toString(0xff));
+        assertEquals("11111111 00000000", Base.BIN.toString(0xff00));
+        assertEquals("11111111 00000000 00000000", Base.BIN.toString(0xff0000));
+        assertEquals("11111111 00000000 00000000 00000000", Base.BIN.toString(0xff000000));
     }
 
     @Test
     public void testIntToHexString() {
-        assertEquals("0", NumberStringUtils.intToString(0, Base.HEX));
-        assertEquals("ff", NumberStringUtils.intToString(0xff, Base.HEX));
-        assertEquals("ff 00", NumberStringUtils.intToString(0xff00, Base.HEX));
-        assertEquals("ff 00 00", NumberStringUtils.intToString(0xff0000, Base.HEX));
-        assertEquals("ff 00 00 00", NumberStringUtils.intToString(0xff000000, Base.HEX));
+        assertEquals("0", Base.HEX.toString(0));
+        assertEquals("ff", Base.HEX.toString(0xff));
+        assertEquals("ff 00", Base.HEX.toString(0xff00));
+        assertEquals("ff 00 00", Base.HEX.toString(0xff0000));
+        assertEquals("ff 00 00 00", Base.HEX.toString(0xff000000));
     }
 
     @Test
