@@ -380,7 +380,7 @@ public class MainActivity extends AppCompatActivity {
         String[] hexStrings = mCalculator.getHexStrings();
 
         for (int i = 0; i < 4; i++) {
-            mHexTextViews[i].setText(getString(R.string.hex_prefix, hexStrings[i].toUpperCase()));
+            mHexTextViews[i].setText(getString(R.string.hex_prefix, hexStrings[i]));
         }
     }
 
