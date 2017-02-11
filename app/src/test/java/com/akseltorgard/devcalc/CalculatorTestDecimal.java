@@ -110,4 +110,16 @@ public class CalculatorTestDecimal {
 
         assertEquals("0", calculator.getInputString());
     }
+
+    @Test
+    public void testHexStrings() {
+        Calculator calculator = new Calculator();
+
+        String input = "327423";
+        for (int i = 0, size = input.length(); i < size; i++) {
+            calculator.inputDigit(String.valueOf(input.charAt(i)));
+        }
+
+        assertArrayEquals(new String[]{"FF", "FE", "04", "00"}, calculator.getHexStrings());
+    }
 }

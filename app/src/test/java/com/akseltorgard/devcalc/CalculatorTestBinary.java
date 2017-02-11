@@ -2,8 +2,6 @@ package com.akseltorgard.devcalc;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-
 import static com.akseltorgard.devcalc.Base.BIN;
 import static com.akseltorgard.devcalc.Base.HEX;
 import static org.junit.Assert.assertArrayEquals;
@@ -182,5 +180,18 @@ public class CalculatorTestBinary {
         bits = calculator.getBits();
 
         assertArrayEquals(expected2, bits);
+    }
+
+    @Test
+    public void testHexStrings() {
+        Calculator calculator = new Calculator();
+        calculator.setBase(BIN);
+
+        String input = "1001111111011111111";
+        for (int i = 0, size = input.length(); i < size; i++) {
+            calculator.inputDigit(String.valueOf(input.charAt(i)));
+        }
+
+        assertArrayEquals(new String[]{"FF", "FE", "04", "00"}, calculator.getHexStrings());
     }
 }
