@@ -2,10 +2,9 @@ package com.akseltorgard.devcalc;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
-public class NumberStringUtilsTest {
+public class BaseTest {
 
     @Test
     public void testIntToBinaryString() {
@@ -23,15 +22,5 @@ public class NumberStringUtilsTest {
         assertEquals("ff 00", Base.HEX.toString(0xff00));
         assertEquals("ff 00 00", Base.HEX.toString(0xff0000));
         assertEquals("ff 00 00 00", Base.HEX.toString(0xff000000));
-    }
-
-    @Test
-    public void testIntToHexStringArray() {
-        assertArrayEquals(new String[]{"00", "00", "00", "00"}, NumberStringUtils.intToHexStringArray(0));
-        assertArrayEquals(new String[]{"ff", "00", "00", "00"}, NumberStringUtils.intToHexStringArray(0xff));
-        assertArrayEquals(new String[]{"00", "ff", "00", "00"}, NumberStringUtils.intToHexStringArray(0xff00));
-        assertArrayEquals(new String[]{"00", "00", "ff", "00"}, NumberStringUtils.intToHexStringArray(0xff0000));
-        assertArrayEquals(new String[]{"00", "00", "00", "ff"}, NumberStringUtils.intToHexStringArray(0xff000000));
-        assertArrayEquals(new String[]{"ff", "ff", "ff", "ff"}, NumberStringUtils.intToHexStringArray(0xffffffff));
     }
 }

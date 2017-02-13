@@ -3,6 +3,7 @@ package com.akseltorgard.devcalc;
 import org.junit.Test;
 
 import static com.akseltorgard.devcalc.Base.HEX;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class CalculatorTestHexadecimal {
@@ -156,5 +157,18 @@ public class CalculatorTestHexadecimal {
         calculator.backspace();
 
         assertEquals("0", calculator.getInputString());
+    }
+
+    @Test
+    public void testHexStrings() {
+        Calculator calculator = new Calculator();
+        calculator.setBase(HEX);
+
+        String input = "4FEFF";
+        for (int i = 0, size = input.length(); i < size; i++) {
+            calculator.inputDigit(String.valueOf(input.charAt(i)));
+        }
+
+        assertArrayEquals(new String[]{"FF", "FE", "04", "00"}, calculator.getHexStrings());
     }
 }
